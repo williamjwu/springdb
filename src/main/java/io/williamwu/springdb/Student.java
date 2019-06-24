@@ -1,15 +1,14 @@
 package io.williamwu.springdb;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Student {
     final private String id;
     private String name;
     private int age;
-    private LinkedList<String> classes;
+    private List<String> classes;
     private Enums.Gender gender;
 
     public Student(String name, int age, Enums.Gender gender) {
@@ -17,13 +16,7 @@ public class Student {
         this.age = age;
         this.gender = gender;
         classes = new LinkedList<>();
-        id = toSHA256(name);
-    }
-
-    private String toSHA256(String raw) {
-        // takes last 6 digits of student name's SHA256 value
-        String fullSHA256 = DigestUtils.sha256Hex(raw);
-        return fullSHA256.substring(fullSHA256.length() - 6);
+        id = Functions.toSHA256(name);
     }
 
     // accessors and modifiers
