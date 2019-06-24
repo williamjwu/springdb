@@ -7,4 +7,7 @@ public class Enums {
     public enum Gender {
         MALE, FEMALE, UNKNOWN
     }
+    public enum Periods {
+        FIRST, SECOND, THIRD, FOURTH, FIFTH
+    }
 }
