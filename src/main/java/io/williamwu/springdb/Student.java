@@ -5,55 +5,60 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Student {
-    final private String id;
+    private Long id;
     private String studentName;
-    private int age;
-    private List<String> classes;
+    private Integer age;
+    private List<String> subjects;
     private Enums.Gender gender;
 
-    public Student(String studentName, int age, Enums.Gender gender) {
+    public Student(Long id, String studentName, Integer age, Enums.Gender gender) {
+        this.id = id;
         this.studentName = studentName;
         this.age = age;
+        subjects = new LinkedList<>();
         this.gender = gender;
-        classes = new LinkedList<>();
-        id = Functions.toSHA256(studentName);
     }
 
-    // accessors and modifiers
-    public String getId() {
+    public Long getId() {
         return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getStudentName() {
         return studentName;
     }
+
     public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
-    public int getAge() {
+
+    public Integer getAge() {
         return age;
     }
-    public void setAge(int age) {
+
+    public void setAge(Integer age) {
         this.age = age;
     }
 
-    /**
-     * stores all class id instead of class objects
-     * all class objects can be accessed in main method's hashmap
-     */
-    public Iterator<String> getClasses() {
-        return classes.iterator();
+    public Iterator<String> getSubject() {
+        return subjects.iterator();
     }
-    public void addClass(String currClass) {
-        classes.add(currClass);
+
+    public void addSubject(String subject) {
+        subjects.add(subject);
     }
-    // returns true if the class presents, used for detecting a valid class is removed
-    public boolean rmClass(String currClass) {
-        return classes.remove(currClass);
+
+    public void rmSubject(String subject) {
+        subjects.remove(subject);
     }
 
     public Enums.Gender getGender() {
         return gender;
     }
+
     public void setGender(Enums.Gender gender) {
         this.gender = gender;
     }
