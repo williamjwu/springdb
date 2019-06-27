@@ -1,29 +1,27 @@
 package io.williamwu.springdb;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+public class Teacher {
 
-public class Student {
-    private Long id;
+    private Integer id;
     private String studentName;
     private Integer age;
-    private List<String> subjects;
     private Enums.Gender gender;
 
-    public Student(Long id, String studentName, Integer age, Enums.Gender gender) {
+    public Teacher() {
+    }
+
+    public Teacher(Integer id, String studentName, Integer age, Enums.Gender gender) {
         this.id = id;
         this.studentName = studentName;
         this.age = age;
-        subjects = new LinkedList<>();
         this.gender = gender;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -41,18 +39,6 @@ public class Student {
 
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-    public Iterator<String> getSubject() {
-        return subjects.iterator();
-    }
-
-    public void addSubject(String subject) {
-        subjects.add(subject);
-    }
-
-    public void rmSubject(String subject) {
-        subjects.remove(subject);
     }
 
     public Enums.Gender getGender() {

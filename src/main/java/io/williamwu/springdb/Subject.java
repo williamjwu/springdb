@@ -2,27 +2,27 @@ package io.williamwu.springdb;
 
 public class Subject {
 
-    private String id;
+    private Integer id;
     private String subjectName;
     // days and periods are 1 to 1 on same digits
     // ex: classDays[0] = WEDNESDAY, classPeriods[0] = SECOND
     // this means there is a class on Wednesday second period
     // a class can have multiple meeting periods
-    private Enums.Days[] classDays;
-    private Enums.Periods[] classPeriods;
+    private Enums.Day[] classDays;
+    private Enums.Period[] classPeriods;
 
-    public Subject(String id, String subjectName, Enums.Days[] classDays, Enums.Periods[] classPeriods) {
+    public Subject(Integer id, String subjectName, Enums.Day[] classDays, Enums.Period[] classPeriods) {
         this.id = id;
         this.subjectName = subjectName;
         this.classDays = classDays;
         this.classPeriods = classPeriods;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -34,19 +34,19 @@ public class Subject {
         this.subjectName = subjectName;
     }
 
-    public Enums.Days[] getClassDays() {
+    public Enums.Day[] getClassDays() {
         return classDays;
     }
 
-    public void setClassDays(Enums.Days[] classDays) {
+    public void setClassDays(Enums.Day[] classDays) {
         this.classDays = classDays;
     }
 
-    public Enums.Periods[] getClassPeriods() {
+    public Enums.Period[] getClassPeriods() {
         return classPeriods;
     }
 
-    public void setClassPeriods(Enums.Periods[] classPeriods) {
+    public void setClassPeriods(Enums.Period[] classPeriods) {
         this.classPeriods = classPeriods;
     }
 }
