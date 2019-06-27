@@ -16,7 +16,7 @@ public class StudentDAO {
     @Autowired
     private JdbcTemplate jdbc;
 
-    public List<Student> getStudents() {
+    public List<Student> getStudent() {
         String SQL = "SELECT * FROM student";
         return jdbc.query(SQL, new StudentMapper());
     }
@@ -31,16 +31,35 @@ public class StudentDAO {
         }
     }
 
-    public int addStudents() {
+    public int addStudent(Student student) {
+        try {
+            String SQL = "INSERT INTO student (create_time, student_name, student_age, student_age) VALUES (now(), ?, ?, ?)";
+            return jdbc.update(SQL, student.getStudentName(), student.getAge(), student.getGender().toString());
+        } catch (Exception ex) {
+            return 0;
+        }
+    }
 
-        return 1;
+    public int rmStudent(String name) {
+        try {
+            name = "\"" + name + "\"";
+            String SQL = "DELETE FROM student WHERE student_name = " + name;
+            return jdbc.update(SQL);
+        } catch (Exception ex) {
+            return 0;
+        }
     }
 
     private class StudentMapper implements RowMapper<Student> {
         public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Enums.Gender gender = Enums.Gender.valueOf(rs.getString("student_gender").toUpperCase());
+            String gender = (rs.getString("student_gender").toUpperCase());
+            // if gender is not male or female, it will be assigned as unknown
+            if (!gender.equals(Enums.Gender.MALE.toString()) && !gender.equals(Enums.Gender.FEMALE.toString())) {
+                gender = "UNKNOWN";
+            }
+            Enums.Gender enumGender = Enums.Gender.valueOf(gender);
             return new Student(rs.getInt("student_id"), rs.getString("student_name"),
-                    rs.getInt("student_age"), gender);
+                    rs.getInt("student_age"), enumGender);
         }
     }
 

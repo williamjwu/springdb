@@ -1,4 +1,6 @@
-package io.williamwu.springdb;
+package io.williamwu.springdb.teacher;
+
+import io.williamwu.springdb.Enums;
 
 public class Teacher {
 

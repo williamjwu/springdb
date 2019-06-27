@@ -11,11 +11,19 @@ public class StudentService {
     @Autowired
     private StudentDAO dao;
 
-    public List<Student> getStudents() {
-        return dao.getStudents();
+    public List<Student> getStudent() {
+        return dao.getStudent();
     }
 
     public List<Student> getSpecStudent(String name) {
         return dao.getSpecStudent(name);
+    }
+
+    public int addStudent(Student student) {
+        return dao.addStudent(student);
+    }
+
+    public int rmStudent(String name) {
+        return dao.rmStudent(name);
     }
 }

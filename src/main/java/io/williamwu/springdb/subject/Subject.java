@@ -1,4 +1,6 @@
-package io.williamwu.springdb;
+package io.williamwu.springdb.subject;
+
+import io.williamwu.springdb.Enums;
 
 public class Subject {
 
