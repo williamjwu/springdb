@@ -14,4 +14,8 @@ public class StudentService {
     public List<Student> getStudents() {
         return dao.getStudents();
     }
+
+    public List<Student> getSpecStudent(String name) {
+        return dao.getSpecStudent(name);
+    }
 }
