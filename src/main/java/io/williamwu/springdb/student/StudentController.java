@@ -22,7 +22,9 @@ public class StudentController {
     }
 
     @PostMapping(value = "/student/addStudent")
-    public int addStudent(@RequestParam(name="stu_name", required = true) String name, Integer age, String gender) {
+    public int addStudent(@RequestParam(name = "stu_name", required = true) String name,
+                          @RequestParam(name = "stu_age", required = true) Integer age,
+                          @RequestParam(name = "stu_gender", required = true) String gender) {
         gender = gender.toUpperCase();
         if (!gender.equals(Enums.Gender.MALE.toString()) && !gender.equals(Enums.Gender.FEMALE.toString())) {
             gender = "UNKNOWN";

@@ -10,19 +10,9 @@ import java.util.List;
 @RestController
 public class MainController {
 
-    @Autowired
-    private JdbcTemplate jdbc;
-
     @RequestMapping("/")
-    public String greeting() {
+    public String index() {
         return "This is the landing page (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧";
-    }
-
-    @RequestMapping("/insert")
-    public String insert() {
-        String SQL = "INSERT INTO student (create_time, student_name, student_age) VALUES (now(), ?, ?)";
-        jdbc.update(SQL, "william", 19);
-        return "Created Record";
     }
 
 }

@@ -11,8 +11,7 @@ public class SpringdbApplicationTests {
 
     @Test
     public void contextLoads() {
-        MainController main = new MainController();
-        main.insert();
+
     }
 
 }

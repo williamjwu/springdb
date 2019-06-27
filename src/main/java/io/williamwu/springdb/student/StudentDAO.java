@@ -33,9 +33,10 @@ public class StudentDAO {
 
     public int addStudent(Student student) {
         try {
-            String SQL = "INSERT INTO student (create_time, student_name, student_age, student_age) VALUES (now(), ?, ?, ?)";
+            String SQL = "INSERT INTO student (create_time, student_name, student_age, student_gender) VALUES (now(), ?, ?, ?)";
             return jdbc.update(SQL, student.getStudentName(), student.getAge(), student.getGender().toString());
         } catch (Exception ex) {
+            ex.printStackTrace();
             return 0;
         }
     }
@@ -46,6 +47,7 @@ public class StudentDAO {
             String SQL = "DELETE FROM student WHERE student_name = " + name;
             return jdbc.update(SQL);
         } catch (Exception ex) {
+            ex.printStackTrace();
             return 0;
         }
     }
