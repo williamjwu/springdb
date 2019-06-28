@@ -41,7 +41,6 @@ public class StudentDAO {
         }
     }
 
-    @SuppressWarnings("Duplicates")
     public int updateStudent(String currName, String newName, Integer newAge, String newGender) {
         int counter = 0;
         currName = "\"" + currName + "\"";
@@ -50,11 +49,13 @@ public class StudentDAO {
                     ", modify_time = now() WHERE student_name = " + currName);
         }
         if (newGender != null) {
-            newGender = newGender.toUpperCase();
-            if (!newGender.equals("MALE") && !newGender.equals("FEMALE")) {
-                newGender = "UNKNOWN";
+            Enums.Gender gender;
+            try {
+                gender = Enums.Gender.valueOf(newGender.toUpperCase());
+            } catch (Exception ex) {
+                gender = Enums.Gender.UNKNOWN;
             }
-            newGender = "\"" + newGender + "\"";
+            newGender = "\"" + gender.toString()+ "\"";
             counter += jdbc.update("UPDATE student SET student_gender = " + newGender +
                     ", modify_time = now() WHERE student_name = " + currName);
         }
@@ -78,15 +79,15 @@ public class StudentDAO {
         }
     }
 
-    @SuppressWarnings("Duplicates")
     private class StudentMapper implements RowMapper<Student> {
         public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
-            String gender = (rs.getString("student_gender").toUpperCase());
             // if gender is not male or female, it will be assigned as unknown
-            if (!gender.equals(Enums.Gender.MALE.toString()) && !gender.equals(Enums.Gender.FEMALE.toString())) {
-                gender = "UNKNOWN";
+            Enums.Gender enumGender;
+            try {
+                enumGender = Enums.Gender.valueOf(rs.getString("student_gender").toUpperCase());
+            } catch (Exception ex) {
+                enumGender = Enums.Gender.UNKNOWN;
             }
-            Enums.Gender enumGender = Enums.Gender.valueOf(gender);
             Student student = new Student(rs.getInt("student_id"), rs.getString("student_name"),
                     rs.getInt("student_age"), enumGender);
             if (rs.getTimestamp("create_time") != null) {

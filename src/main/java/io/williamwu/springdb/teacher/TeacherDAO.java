@@ -41,7 +41,6 @@ public class TeacherDAO {
         }
     }
 
-    @SuppressWarnings("Duplicates")
     public int updateTeacher(String currName, String newName, Integer newAge, String newGender) {
         int counter = 0;
         currName = "\"" + currName + "\"";
@@ -50,11 +49,13 @@ public class TeacherDAO {
                     ", modify_time = now() WHERE teacher_name = " + currName);
         }
         if (newGender != null) {
-            newGender = newGender.toUpperCase();
-            if (!newGender.equals("MALE") && !newGender.equals("FEMALE")) {
-                newGender = "UNKNOWN";
+            Enums.Gender gender;
+            try {
+                gender = Enums.Gender.valueOf(newGender.toUpperCase());
+            } catch (Exception ex) {
+                gender = Enums.Gender.UNKNOWN;
             }
-            newGender = "\"" + newGender + "\"";
+            newGender = "\"" + gender.toString()+ "\"";
             counter += jdbc.update("UPDATE teacher SET teacher_gender = " + newGender +
                     ", modify_time = now() WHERE teacher_name = " + currName);
         }
@@ -78,15 +79,15 @@ public class TeacherDAO {
         }
     }
 
-    @SuppressWarnings("Duplicates")
     private class TeacherMapper implements RowMapper<Teacher> {
         public Teacher mapRow(ResultSet rs, int rowNum) throws SQLException {
-            String gender = (rs.getString("teacher_gender").toUpperCase());
             // if gender is not male or female, it will be assigned as unknown
-            if (!gender.equals(Enums.Gender.MALE.toString()) && !gender.equals(Enums.Gender.FEMALE.toString())) {
-                gender = "UNKNOWN";
+            Enums.Gender enumGender;
+            try {
+                enumGender = Enums.Gender.valueOf(rs.getString("teacher_gender").toUpperCase());
+            } catch (Exception ex) {
+                enumGender = Enums.Gender.UNKNOWN;
             }
-            Enums.Gender enumGender = Enums.Gender.valueOf(gender);
             Teacher teacher = new Teacher(rs.getInt("teacher_id"), rs.getString("teacher_name"),
                     rs.getInt("teacher_age"), enumGender);
             if (rs.getTimestamp("create_time") != null) {

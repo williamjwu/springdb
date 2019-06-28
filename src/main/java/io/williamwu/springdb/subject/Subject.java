@@ -1,23 +1,34 @@
 package io.williamwu.springdb.subject;
 
 import io.williamwu.springdb.Enums;
+import java.util.Date;
 
 public class Subject {
 
     private Integer id;
     private String subjectName;
-    // days and periods are 1 to 1 on same digits
-    // ex: classDays[0] = WEDNESDAY, classPeriods[0] = SECOND
-    // this means there is a class on Wednesday second period
-    // a class can have multiple meeting periods
-    private Enums.Day[] classDays;
-    private Enums.Period[] classPeriods;
+    private Enums.Day classDay;
+    private Enums.Period classPeriod;
+    private Date createTime;
+    private Date modifyTime;
+    private Integer teacherId;
 
-    public Subject(Integer id, String subjectName, Enums.Day[] classDays, Enums.Period[] classPeriods) {
+    public Subject() {
+    }
+
+    public Subject(Integer id, String subjectName, Enums.Day classDay, Enums.Period classPeriod) {
         this.id = id;
         this.subjectName = subjectName;
-        this.classDays = classDays;
-        this.classPeriods = classPeriods;
+        this.classDay = classDay;
+        this.classPeriod = classPeriod;
+    }
+
+    public Integer getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
     }
 
     public Integer getId() {
@@ -36,19 +47,35 @@ public class Subject {
         this.subjectName = subjectName;
     }
 
-    public Enums.Day[] getClassDays() {
-        return classDays;
+    public Enums.Day getClassDay() {
+        return classDay;
     }
 
-    public void setClassDays(Enums.Day[] classDays) {
-        this.classDays = classDays;
+    public void setClassDay(Enums.Day classDay) {
+        this.classDay = classDay;
     }
 
-    public Enums.Period[] getClassPeriods() {
-        return classPeriods;
+    public Enums.Period getClassPeriod() {
+        return classPeriod;
     }
 
-    public void setClassPeriods(Enums.Period[] classPeriods) {
-        this.classPeriods = classPeriods;
+    public void setClassPeriod(Enums.Period classPeriod) {
+        this.classPeriod = classPeriod;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
     }
 }

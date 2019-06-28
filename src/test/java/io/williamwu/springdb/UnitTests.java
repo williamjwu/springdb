@@ -9,7 +9,6 @@ public class UnitTests {
 
     @Test
     public void testStudent() {
-
     }
 
     @Test

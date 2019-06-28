@@ -9,26 +9,27 @@ import java.util.List;
 public class TeacherController {
 
     @Autowired
-    private TeacherService teacherService;
+    private TeacherService service;
 
     @GetMapping(value = "/teacher/getTeacher")
     public List<Teacher> getTeacher(@RequestParam(name = "teach_name", required = false) String name) {
         if (name == null) {
-            return teacherService.getTeacher();
+            return service.getTeacher();
         }
-        return teacherService.getSpecTeacher(name);
+        return service.getSpecTeacher(name);
     }
 
     @PostMapping(value = "/teacher/addTeacher")
     public int addTeacher(@RequestParam(name = "teach_name", required = true) String name,
                           @RequestParam(name = "teach_age", required = true) Integer age,
                           @RequestParam(name = "teach_gender", required = true) String gender) {
-        gender = gender.toUpperCase();
-        if (!gender.equals(Enums.Gender.MALE.toString()) && !gender.equals(Enums.Gender.FEMALE.toString())) {
-            gender = "UNKNOWN";
+        Enums.Gender enumGender;
+        try {
+            enumGender = Enums.Gender.valueOf(gender.toUpperCase());
+        } catch (Exception ex) {
+            enumGender = Enums.Gender.UNKNOWN;
         }
-        Enums.Gender enumGender = Enums.Gender.valueOf(gender);
-        return teacherService.addTeacher(new Teacher(null, name, age, enumGender));
+        return service.addTeacher(new Teacher(null, name, age, enumGender));
     }
 
     @PostMapping(value = "/teacher/updateTeacher")
@@ -36,7 +37,7 @@ public class TeacherController {
                              @RequestParam(name = "new_name", required = false) String newName,
                              @RequestParam(name = "new_age", required = false) Integer newAge,
                              @RequestParam(name = "new_gender", required = false) String newGender) {
-        return teacherService.updateTeacher(currName, newName, newAge, newGender);
+        return service.updateTeacher(currName, newName, newAge, newGender);
     }
 
     @DeleteMapping(value = "/teacher/rmTeacher")
@@ -44,7 +45,7 @@ public class TeacherController {
         if (name == null) {
             return 0;
         }
-        return teacherService.rmTeacher(name);
+        return service.rmTeacher(name);
     }
 
 }
