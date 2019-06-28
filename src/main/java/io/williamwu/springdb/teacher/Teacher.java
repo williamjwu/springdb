@@ -5,16 +5,16 @@ import io.williamwu.springdb.Enums;
 public class Teacher {
 
     private Integer id;
-    private String studentName;
+    private String teacherName;
     private Integer age;
     private Enums.Gender gender;
 
     public Teacher() {
     }
 
-    public Teacher(Integer id, String studentName, Integer age, Enums.Gender gender) {
+    public Teacher(Integer id, String teacherName, Integer age, Enums.Gender gender) {
         this.id = id;
-        this.studentName = studentName;
+        this.teacherName = teacherName;
         this.age = age;
         this.gender = gender;
     }
@@ -27,12 +27,12 @@ public class Teacher {
         this.id = id;
     }
 
-    public String getStudentName() {
-        return studentName;
+    public String getTeacherName() {
+        return teacherName;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
     public Integer getAge() {

@@ -3,7 +3,6 @@ package io.williamwu.springdb.student;
 import io.williamwu.springdb.Enums;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -18,7 +17,6 @@ public class StudentController {
             return studentService.getStudent();
         }
         return studentService.getSpecStudent(name);
-
     }
 
     @PostMapping(value = "/student/addStudent")
