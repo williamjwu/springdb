@@ -22,6 +22,10 @@ public class TeacherService {
         return dao.addTeacher(teacher);
     }
 
+    public int updateTeacher(String currName, String newName, Integer newAge, String newGender) {
+        return dao.updateTeacher(currName, newName, newAge, newGender);
+    }
+
     public int rmTeacher(String name) {
         return dao.rmTeacher(name);
     }

@@ -2,12 +2,16 @@ package io.williamwu.springdb.teacher;
 
 import io.williamwu.springdb.Enums;
 
+import java.util.Date;
+
 public class Teacher {
 
     private Integer id;
     private String teacherName;
     private Integer age;
     private Enums.Gender gender;
+    private Date createTime;
+    private Date modifyTime;
 
     public Teacher() {
     }
@@ -49,5 +53,21 @@ public class Teacher {
 
     public void setGender(Enums.Gender gender) {
         this.gender = gender;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
     }
 }

@@ -1,7 +1,7 @@
 package io.williamwu.springdb.student;
 
 import io.williamwu.springdb.Enums;
-
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,6 +12,8 @@ public class Student {
     private Integer age;
     private List<String> subjects;
     private Enums.Gender gender;
+    private Date createTime;
+    private Date modifyTime;
 
     public Student() {
     }
@@ -68,4 +70,19 @@ public class Student {
         this.gender = gender;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
 }

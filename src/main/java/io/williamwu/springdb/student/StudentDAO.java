@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -40,6 +41,32 @@ public class StudentDAO {
         }
     }
 
+    @SuppressWarnings("Duplicates")
+    public int updateStudent(String currName, String newName, Integer newAge, String newGender) {
+        int counter = 0;
+        currName = "\"" + currName + "\"";
+        if (newAge != null) {
+            counter += jdbc.update("UPDATE student SET student_age = " + newAge +
+                    ", modify_time = now() WHERE student_name = " + currName);
+        }
+        if (newGender != null) {
+            newGender = newGender.toUpperCase();
+            if (!newGender.equals("MALE") && !newGender.equals("FEMALE")) {
+                newGender = "UNKNOWN";
+            }
+            newGender = "\"" + newGender + "\"";
+            counter += jdbc.update("UPDATE student SET student_gender = " + newGender +
+                    ", modify_time = now() WHERE student_name = " + currName);
+        }
+        // update name MUST be at the bottom as it overrides the current student name
+        if (newName != null) {
+            newName = "\"" + newName + "\"";
+            counter += jdbc.update("UPDATE student SET student_name = " + newName +
+                    ", modify_time = now() WHERE student_name = " + currName);
+        }
+        return counter;
+    }
+
     public int rmStudent(String name) {
         try {
             name = "\"" + name + "\"";
@@ -51,6 +78,7 @@ public class StudentDAO {
         }
     }
 
+    @SuppressWarnings("Duplicates")
     private class StudentMapper implements RowMapper<Student> {
         public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
             String gender = (rs.getString("student_gender").toUpperCase());
@@ -59,8 +87,15 @@ public class StudentDAO {
                 gender = "UNKNOWN";
             }
             Enums.Gender enumGender = Enums.Gender.valueOf(gender);
-            return new Student(rs.getInt("student_id"), rs.getString("student_name"),
+            Student student = new Student(rs.getInt("student_id"), rs.getString("student_name"),
                     rs.getInt("student_age"), enumGender);
+            if (rs.getTimestamp("create_time") != null) {
+                student.setCreateTime(new Date(rs.getTimestamp("create_time").getTime()));
+            }
+            if (rs.getTimestamp("modify_time") != null) {
+                student.setModifyTime(new Date(rs.getTimestamp("modify_time").getTime()));
+            }
+            return student;
         }
     }
 

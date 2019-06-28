@@ -22,6 +22,10 @@ public class StudentService {
         return dao.addStudent(student);
     }
 
+    public int updateStudent(String currName, String newName, Integer newAge, String newGender) {
+        return dao.updateStudent(currName, newName, newAge, newGender);
+    }
+
     public int rmStudent(String name) {
         return dao.rmStudent(name);
     }

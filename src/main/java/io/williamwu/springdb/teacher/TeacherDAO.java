@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -40,6 +41,32 @@ public class TeacherDAO {
         }
     }
 
+    @SuppressWarnings("Duplicates")
+    public int updateTeacher(String currName, String newName, Integer newAge, String newGender) {
+        int counter = 0;
+        currName = "\"" + currName + "\"";
+        if (newAge != null) {
+            counter += jdbc.update("UPDATE teacher SET teacher_age = " + newAge +
+                    ", modify_time = now() WHERE teacher_name = " + currName);
+        }
+        if (newGender != null) {
+            newGender = newGender.toUpperCase();
+            if (!newGender.equals("MALE") && !newGender.equals("FEMALE")) {
+                newGender = "UNKNOWN";
+            }
+            newGender = "\"" + newGender + "\"";
+            counter += jdbc.update("UPDATE teacher SET teacher_gender = " + newGender +
+                    ", modify_time = now() WHERE teacher_name = " + currName);
+        }
+        // update name MUST be at the bottom as it overrides the current student name
+        if (newName != null) {
+            newName = "\"" + newName + "\"";
+            counter += jdbc.update("UPDATE teacher SET teacher_name = " + newName +
+                    ", modify_time = now() WHERE teacher_name = " + currName);
+        }
+        return counter;
+    }
+
     public int rmTeacher(String name) {
         try {
             name = "\"" + name + "\"";
@@ -51,6 +78,7 @@ public class TeacherDAO {
         }
     }
 
+    @SuppressWarnings("Duplicates")
     private class TeacherMapper implements RowMapper<Teacher> {
         public Teacher mapRow(ResultSet rs, int rowNum) throws SQLException {
             String gender = (rs.getString("teacher_gender").toUpperCase());
@@ -59,8 +87,15 @@ public class TeacherDAO {
                 gender = "UNKNOWN";
             }
             Enums.Gender enumGender = Enums.Gender.valueOf(gender);
-            return new Teacher(rs.getInt("teacher_id"), rs.getString("teacher_name"),
+            Teacher teacher = new Teacher(rs.getInt("teacher_id"), rs.getString("teacher_name"),
                     rs.getInt("teacher_age"), enumGender);
+            if (rs.getTimestamp("create_time") != null) {
+                teacher.setCreateTime(new Date(rs.getTimestamp("create_time").getTime()));
+            }
+            if (rs.getTimestamp("modify_time") != null) {
+                teacher.setModifyTime(new Date(rs.getTimestamp("modify_time").getTime()));
+            }
+            return teacher;
         }
     }
 

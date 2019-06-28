@@ -31,6 +31,14 @@ public class StudentController {
         return studentService.addStudent(new Student(null, name, age, enumGender));
     }
 
+    @PostMapping(value = "/student/updateStudent")
+    public int updateStudent(@RequestParam(name = "stu_name", required = true) String currName,
+                             @RequestParam(name = "new_name", required = false) String newName,
+                             @RequestParam(name = "new_age", required = false) Integer newAge,
+                             @RequestParam(name = "new_gender", required = false) String newGender) {
+        return studentService.updateStudent(currName, newName, newAge, newGender);
+    }
+
     @DeleteMapping(value = "/student/rmStudent")
     public int rmStudent(@RequestParam(name="stu_name", required = true) String name) {
         if (name == null) {
