@@ -1,4 +1,4 @@
-package io.williamwu.springdb.subject;
+package io.williamwu.springdb;
 
 import io.williamwu.springdb.Enums;
 import java.util.Date;

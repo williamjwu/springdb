@@ -1,6 +1,7 @@
-package io.williamwu.springdb.teacher;
+package io.williamwu.springdb.dao;
 
 import io.williamwu.springdb.Enums;
+import io.williamwu.springdb.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -16,12 +17,12 @@ public class TeacherDAO {
     @Autowired
     private JdbcTemplate jdbc;
 
-    public List<Teacher> getTeacher() {
+    public List<Teacher> get() {
         String SQL = "SELECT * FROM teacher";
         return jdbc.query(SQL, new TeacherDAO.TeacherMapper());
     }
 
-    public List<Teacher> getSpecTeacher(String name) {
+    public List<Teacher> get(String name) {
         try {
             name = "\"" + name + "\"";
             String SQL = "SELECT * FROM teacher WHERE teacher_name = " + name;
@@ -31,7 +32,7 @@ public class TeacherDAO {
         }
     }
 
-    public int addTeacher(Teacher teacher) {
+    public int add(Teacher teacher) {
         try {
             String SQL = "INSERT INTO teacher (create_time, teacher_name, teacher_age, teacher_gender) VALUES (now(), ?, ?, ?)";
             return jdbc.update(SQL, teacher.getTeacherName(), teacher.getAge(), teacher.getGender().toString());
@@ -41,7 +42,7 @@ public class TeacherDAO {
         }
     }
 
-    public int updateTeacher(String currName, String newName, Integer newAge, String newGender) {
+    public int update(String currName, String newName, Integer newAge, String newGender) {
         int counter = 0;
         currName = "\"" + currName + "\"";
         if (newAge != null) {
@@ -68,7 +69,7 @@ public class TeacherDAO {
         return counter;
     }
 
-    public int rmTeacher(String name) {
+    public int rm(String name) {
         try {
             name = "\"" + name + "\"";
             String SQL = "DELETE FROM teacher WHERE teacher_name = " + name;

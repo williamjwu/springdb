@@ -1,6 +1,8 @@
-package io.williamwu.springdb.subject;
+package io.williamwu.springdb.controller;
 
 import io.williamwu.springdb.Enums;
+import io.williamwu.springdb.Subject;
+import io.williamwu.springdb.service.subject.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -12,7 +14,7 @@ public class SubjectController {
     private SubjectService service;
 
     @GetMapping(value = "/subject/getSubject")
-    public List<Subject> getSubject(@RequestParam(name = "sub_name", required = false) String name) {
+    public List<Subject> get(@RequestParam(name = "sub_name", required = false) String name) {
         if (name == null) {
             return service.getSubject();
         }
@@ -20,7 +22,7 @@ public class SubjectController {
     }
 
     @PostMapping(value = "/subject/addSubject")
-    public int addSubject(@RequestParam(name = "sub_name", required = true) String name,
+    public int add(@RequestParam(name = "sub_name", required = true) String name,
                           @RequestParam(name = "sub_day", required = true) String day,
                           @RequestParam(name = "sub_period", required = true) String period) {
         Enums.Day enumDay;
@@ -41,7 +43,7 @@ public class SubjectController {
     }
 
     @PostMapping(value = "/subject/updateSubject")
-    public int updateStudent(@RequestParam(name = "sub_name", required = true) String currName,
+    public int update(@RequestParam(name = "sub_name", required = true) String currName,
                              @RequestParam(name = "new_name", required = false) String newName,
                              @RequestParam(name = "new_day", required = false) String newDay,
                              @RequestParam(name = "new_period", required = false) String newPeriod,
@@ -50,7 +52,7 @@ public class SubjectController {
     }
 
     @DeleteMapping(value = "/subject/rmSubject")
-    public int rmStudent(@RequestParam(name="sub_name", required = true) String name) {
+    public int rm(@RequestParam(name="sub_name", required = true) String name) {
         if (name == null) {
             return 0;
         }

@@ -1,28 +1,25 @@
-package io.williamwu.springdb.student;
+package io.williamwu.springdb;
 
 import io.williamwu.springdb.Enums;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
-public class Student {
+import java.util.Date;
+
+public class Teacher {
+
     private Integer id;
-    private String studentName;
+    private String teacherName;
     private Integer age;
-    private List<String> subjects;
     private Enums.Gender gender;
     private Date createTime;
     private Date modifyTime;
 
-    public Student() {
+    public Teacher() {
     }
 
-    public Student(Integer id, String studentName, Integer age, Enums.Gender gender) {
+    public Teacher(Integer id, String teacherName, Integer age, Enums.Gender gender) {
         this.id = id;
-        this.studentName = studentName;
+        this.teacherName = teacherName;
         this.age = age;
-        subjects = new LinkedList<>();
         this.gender = gender;
     }
 
@@ -34,12 +31,12 @@ public class Student {
         this.id = id;
     }
 
-    public String getStudentName() {
-        return studentName;
+    public String getTeacherName() {
+        return teacherName;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
     public Integer getAge() {
@@ -48,18 +45,6 @@ public class Student {
 
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-    public Iterator<String> getSubject() {
-        return subjects.iterator();
-    }
-
-    public void addSubject(String subject) {
-        subjects.add(subject);
-    }
-
-    public void rmSubject(String subject) {
-        subjects.remove(subject);
     }
 
     public Enums.Gender getGender() {

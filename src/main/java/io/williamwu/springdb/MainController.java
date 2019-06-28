@@ -1,18 +1,13 @@
 package io.williamwu.springdb;
 
-import io.williamwu.springdb.student.Student;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MainController {
 
-    @RequestMapping("/")
+    @GetMapping(value = "/")
     public String index() {
         return "This is the landing page (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧";
     }
-
 }

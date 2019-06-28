@@ -1,5 +1,7 @@
-package io.williamwu.springdb.subject;
+package io.williamwu.springdb.service.subject;
 
+import io.williamwu.springdb.Subject;
+import io.williamwu.springdb.dao.SubjectDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

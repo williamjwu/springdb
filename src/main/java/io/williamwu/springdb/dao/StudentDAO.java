@@ -1,6 +1,7 @@
-package io.williamwu.springdb.student;
+package io.williamwu.springdb.dao;
 
 import io.williamwu.springdb.Enums;
+import io.williamwu.springdb.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -16,12 +17,12 @@ public class StudentDAO {
     @Autowired
     private JdbcTemplate jdbc;
 
-    public List<Student> getStudent() {
+    public List<Student> get() {
         String SQL = "SELECT * FROM student";
         return jdbc.query(SQL, new StudentMapper());
     }
 
-    public List<Student> getSpecStudent(String name) {
+    public List<Student> get(String name) {
         try {
             name = "\"" + name + "\"";
             String SQL = "SELECT * FROM student WHERE student_name = " + name;
@@ -31,7 +32,7 @@ public class StudentDAO {
         }
     }
 
-    public int addStudent(Student student) {
+    public int add(Student student) {
         try {
             String SQL = "INSERT INTO student (create_time, student_name, student_age, student_gender) VALUES (now(), ?, ?, ?)";
             return jdbc.update(SQL, student.getStudentName(), student.getAge(), student.getGender().toString());
@@ -41,7 +42,7 @@ public class StudentDAO {
         }
     }
 
-    public int updateStudent(String currName, String newName, Integer newAge, String newGender) {
+    public int update(String currName, String newName, Integer newAge, String newGender) {
         int counter = 0;
         currName = "\"" + currName + "\"";
         if (newAge != null) {
@@ -68,7 +69,7 @@ public class StudentDAO {
         return counter;
     }
 
-    public int rmStudent(String name) {
+    public int rm(String name) {
         try {
             name = "\"" + name + "\"";
             String SQL = "DELETE FROM student WHERE student_name = " + name;

@@ -1,6 +1,7 @@
-package io.williamwu.springdb.subject;
+package io.williamwu.springdb.dao;
 
 import io.williamwu.springdb.Enums;
+import io.williamwu.springdb.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
