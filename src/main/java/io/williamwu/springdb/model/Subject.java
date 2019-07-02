@@ -1,14 +1,15 @@
-package io.williamwu.springdb;
+package io.williamwu.springdb.model;
 
-import io.williamwu.springdb.Enums;
+import io.williamwu.springdb.enums.DayEnum;
+import io.williamwu.springdb.enums.PeriodEnum;
 import java.util.Date;
 
 public class Subject {
 
     private Integer id;
     private String subjectName;
-    private Enums.Day classDay;
-    private Enums.Period classPeriod;
+    private DayEnum classDay;
+    private PeriodEnum classPeriod;
     private Date createTime;
     private Date modifyTime;
     private Integer teacherId;
@@ -16,7 +17,7 @@ public class Subject {
     public Subject() {
     }
 
-    public Subject(Integer id, String subjectName, Enums.Day classDay, Enums.Period classPeriod) {
+    public Subject(Integer id, String subjectName, DayEnum classDay, PeriodEnum classPeriod) {
         this.id = id;
         this.subjectName = subjectName;
         this.classDay = classDay;
@@ -47,19 +48,19 @@ public class Subject {
         this.subjectName = subjectName;
     }
 
-    public Enums.Day getClassDay() {
+    public DayEnum getClassDay() {
         return classDay;
     }
 
-    public void setClassDay(Enums.Day classDay) {
+    public void setClassDay(DayEnum classDay) {
         this.classDay = classDay;
     }
 
-    public Enums.Period getClassPeriod() {
+    public PeriodEnum getClassPeriod() {
         return classPeriod;
     }
 
-    public void setClassPeriod(Enums.Period classPeriod) {
+    public void setClassPeriod(PeriodEnum classPeriod) {
         this.classPeriod = classPeriod;
     }
 
@@ -77,5 +78,18 @@ public class Subject {
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "id=" + id +
+                ", subjectName='" + subjectName + '\'' +
+                ", classDay=" + classDay +
+                ", classPeriod=" + classPeriod +
+                ", createTime=" + createTime +
+                ", modifyTime=" + modifyTime +
+                ", teacherId=" + teacherId +
+                '}';
     }
 }

@@ -1,29 +1,30 @@
-package io.williamwu.springdb;
+package io.williamwu.springdb.model;
 
-import io.williamwu.springdb.Enums;
+import io.williamwu.springdb.enums.GenderEnum;
+
 import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Student {
+
     private Integer id;
     private String studentName;
     private Integer age;
-    private List<String> subjects;
-    private Enums.Gender gender;
+    private GenderEnum gender;
     private Date createTime;
     private Date modifyTime;
 
     public Student() {
     }
 
-    public Student(Integer id, String studentName, Integer age, Enums.Gender gender) {
+    public Student(Integer id, String studentName, Integer age, String strGender) {
         this.id = id;
         this.studentName = studentName;
         this.age = age;
-        subjects = new LinkedList<>();
-        this.gender = gender;
+        try {
+            gender = GenderEnum.valueOf(strGender.toUpperCase());
+        } catch (Exception ex) {
+            gender = GenderEnum.UNKNOWN;
+        }
     }
 
     public Integer getId() {
@@ -50,24 +51,16 @@ public class Student {
         this.age = age;
     }
 
-    public Iterator<String> getSubject() {
-        return subjects.iterator();
-    }
-
-    public void addSubject(String subject) {
-        subjects.add(subject);
-    }
-
-    public void rmSubject(String subject) {
-        subjects.remove(subject);
-    }
-
-    public Enums.Gender getGender() {
+    public GenderEnum getGender() {
         return gender;
     }
 
-    public void setGender(Enums.Gender gender) {
-        this.gender = gender;
+    public void setGender(String strGender) {
+        try {
+            gender = GenderEnum.valueOf(strGender.toUpperCase());
+        } catch (Exception ex) {
+            gender = GenderEnum.UNKNOWN;
+        }
     }
 
     public Date getCreateTime() {
@@ -84,5 +77,17 @@ public class Student {
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", studentName='" + studentName + '\'' +
+                ", age=" + age +
+                ", gender=" + gender +
+                ", createTime=" + createTime +
+                ", modifyTime=" + modifyTime +
+                '}';
     }
 }

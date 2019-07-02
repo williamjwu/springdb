@@ -1,8 +1,7 @@
 package io.williamwu.springdb.controller;
 
-import io.williamwu.springdb.Enums;
-import io.williamwu.springdb.Teacher;
-import io.williamwu.springdb.service.teacher.TeacherService;
+import io.williamwu.springdb.model.Teacher;
+import io.williamwu.springdb.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -11,43 +10,36 @@ import java.util.List;
 public class TeacherController {
 
     @Autowired
-    private TeacherService service;
+    private Service<Teacher> service;
 
-    @GetMapping(value = "/teacher/getTeacher")
-    public List<Teacher> get(@RequestParam(name = "teach_name", required = false) String name) {
-        if (name == null) {
-            return service.get();
-        }
-        return service.get(name);
+    @GetMapping(value = "/teacher/getAll")
+    public List<Teacher> getAll() {
+        return service.getAll();
     }
 
-    @PostMapping(value = "/teacher/addTeacher")
-    public int add(@RequestParam(name = "teach_name", required = true) String name,
-                          @RequestParam(name = "teach_age", required = true) Integer age,
-                          @RequestParam(name = "teach_gender", required = true) String gender) {
-        Enums.Gender enumGender;
-        try {
-            enumGender = Enums.Gender.valueOf(gender.toUpperCase());
-        } catch (Exception ex) {
-            enumGender = Enums.Gender.UNKNOWN;
-        }
-        return service.add(new Teacher(null, name, age, enumGender));
+    @GetMapping(value = "/teacher/get")
+    public Teacher get(@RequestParam(name = "id") Integer id) {
+        return service.get(id);
     }
 
-    @PostMapping(value = "/teacher/updateTeacher")
-    public int update(@RequestParam(name = "teach_name", required = true) String currName,
-                             @RequestParam(name = "new_name", required = false) String newName,
-                             @RequestParam(name = "new_age", required = false) Integer newAge,
-                             @RequestParam(name = "new_gender", required = false) String newGender) {
-        return service.update(currName, newName, newAge, newGender);
+    @PostMapping(value = "/teacher/insert")
+    public int insert(@RequestParam(name = "teacher_name") String name,
+                   @RequestParam(name = "teacher_age") Integer age,
+                   @RequestParam(name = "teacher_gender") String gender) {
+        return service.insert(new Teacher(null, name, age, gender));
     }
 
-    @DeleteMapping(value = "/teacher/rmTeacher")
-    public int rm(@RequestParam(name="teach_name", required = true) String name) {
-        if (name == null) {
-            return 0;
-        }
-        return service.rm(name);
+    @PostMapping(value = "/teacher/update")
+    public int update(@RequestParam(name = "id") Integer id,
+                      @RequestParam(name = "new_name", required = false) String newName,
+                      @RequestParam(name = "new_age", required = false) Integer newAge,
+                      @RequestParam(name = "new_gender", required = false) String newGender) {
+        return service.update(new Teacher(id, newName, newAge, newGender));
+    }
+
+    @DeleteMapping(value = "/teacher/delete")
+    public int delete(@RequestParam(name="id") Integer id) {
+        return service.delete(id);
     }
 
 }

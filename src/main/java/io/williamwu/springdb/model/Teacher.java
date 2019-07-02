@@ -1,6 +1,6 @@
-package io.williamwu.springdb;
+package io.williamwu.springdb.model;
 
-import io.williamwu.springdb.Enums;
+import io.williamwu.springdb.enums.GenderEnum;
 
 import java.util.Date;
 
@@ -9,18 +9,22 @@ public class Teacher {
     private Integer id;
     private String teacherName;
     private Integer age;
-    private Enums.Gender gender;
+    private GenderEnum gender;
     private Date createTime;
     private Date modifyTime;
 
     public Teacher() {
     }
 
-    public Teacher(Integer id, String teacherName, Integer age, Enums.Gender gender) {
+    public Teacher(Integer id, String teacherName, Integer age, String strGender) {
         this.id = id;
         this.teacherName = teacherName;
         this.age = age;
-        this.gender = gender;
+        try {
+            gender = GenderEnum.valueOf(strGender.toUpperCase());
+        } catch (Exception ex) {
+            gender = GenderEnum.UNKNOWN;
+        }
     }
 
     public Integer getId() {
@@ -47,12 +51,16 @@ public class Teacher {
         this.age = age;
     }
 
-    public Enums.Gender getGender() {
+    public GenderEnum getGender() {
         return gender;
     }
 
-    public void setGender(Enums.Gender gender) {
-        this.gender = gender;
+    public void setGender(String strGender) {
+        try {
+            gender = GenderEnum.valueOf(strGender.toUpperCase());
+        } catch (Exception ex) {
+            gender = GenderEnum.UNKNOWN;
+        }
     }
 
     public Date getCreateTime() {
@@ -69,5 +77,17 @@ public class Teacher {
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id=" + id +
+                ", teacherName='" + teacherName + '\'' +
+                ", age=" + age +
+                ", gender=" + gender +
+                ", createTime=" + createTime +
+                ", modifyTime=" + modifyTime +
+                '}';
     }
 }
