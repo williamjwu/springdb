@@ -24,16 +24,16 @@ public class TeacherController {
 
     @PostMapping(value = "/teacher/insert")
     public int insert(@RequestParam(name = "teacher_name") String name,
-                   @RequestParam(name = "teacher_age") Integer age,
-                   @RequestParam(name = "teacher_gender") String gender) {
+                      @RequestParam(name = "teacher_age") Integer age,
+                      @RequestParam(name = "teacher_gender") String gender) {
         return service.insert(new Teacher(null, name, age, gender));
     }
 
     @PostMapping(value = "/teacher/update")
     public int update(@RequestParam(name = "id") Integer id,
-                      @RequestParam(name = "new_name", required = false) String newName,
-                      @RequestParam(name = "new_age", required = false) Integer newAge,
-                      @RequestParam(name = "new_gender", required = false) String newGender) {
+                      @RequestParam(name = "teacher_name", required = false) String newName,
+                      @RequestParam(name = "teacher_age", required = false) Integer newAge,
+                      @RequestParam(name = "teacher_gender", required = false) String newGender) {
         return service.update(new Teacher(id, newName, newAge, newGender));
     }
 

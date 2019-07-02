@@ -8,8 +8,8 @@ public class Subject {
 
     private Integer id;
     private String subjectName;
-    private DayEnum classDay;
-    private PeriodEnum classPeriod;
+    private DayEnum subjectDay;
+    private PeriodEnum subjectPeriod;
     private Date createTime;
     private Date modifyTime;
     private Integer teacherId;
@@ -17,11 +17,24 @@ public class Subject {
     public Subject() {
     }
 
-    public Subject(Integer id, String subjectName, DayEnum classDay, PeriodEnum classPeriod) {
+    public Subject(Integer id, String subjectName, String day, String period) {
         this.id = id;
         this.subjectName = subjectName;
-        this.classDay = classDay;
-        this.classPeriod = classPeriod;
+        if (day != null) {
+            try {
+                subjectDay = DayEnum.valueOf(day.toUpperCase());
+            } catch (Exception ex) {
+                subjectDay = DayEnum.UNKNOWN;
+            }
+        }
+        if (period != null) {
+            try {
+                subjectPeriod = PeriodEnum.valueOf(period.toUpperCase());
+            } catch (Exception ex) {
+                subjectPeriod = PeriodEnum.UNKNOWN;
+            }
+        }
+
     }
 
     public Integer getTeacherId() {
@@ -48,20 +61,32 @@ public class Subject {
         this.subjectName = subjectName;
     }
 
-    public DayEnum getClassDay() {
-        return classDay;
+    public DayEnum getSubjectDay() {
+        return subjectDay;
     }
 
-    public void setClassDay(DayEnum classDay) {
-        this.classDay = classDay;
+    public void setSubjectDay(String day) {
+        if (day != null) {
+            try {
+                subjectDay = DayEnum.valueOf(day.toUpperCase());
+            } catch (Exception ex) {
+                subjectDay = DayEnum.UNKNOWN;
+            }
+        }
     }
 
-    public PeriodEnum getClassPeriod() {
-        return classPeriod;
+    public PeriodEnum getSubjectPeriod() {
+        return subjectPeriod;
     }
 
-    public void setClassPeriod(PeriodEnum classPeriod) {
-        this.classPeriod = classPeriod;
+    public void setSubjectPeriod(String period) {
+        if (period != null) {
+            try {
+                subjectPeriod = PeriodEnum.valueOf(period.toUpperCase());
+            } catch (Exception ex) {
+                subjectPeriod = PeriodEnum.UNKNOWN;
+            }
+        }
     }
 
     public Date getCreateTime() {
@@ -85,8 +110,8 @@ public class Subject {
         return "Subject{" +
                 "id=" + id +
                 ", subjectName='" + subjectName + '\'' +
-                ", classDay=" + classDay +
-                ", classPeriod=" + classPeriod +
+                ", subjectDay=" + subjectDay +
+                ", subjectPeriod=" + subjectPeriod +
                 ", createTime=" + createTime +
                 ", modifyTime=" + modifyTime +
                 ", teacherId=" + teacherId +

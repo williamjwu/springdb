@@ -20,10 +20,12 @@ public class Teacher {
         this.id = id;
         this.teacherName = teacherName;
         this.age = age;
-        try {
-            gender = GenderEnum.valueOf(strGender.toUpperCase());
-        } catch (Exception ex) {
-            gender = GenderEnum.UNKNOWN;
+        if (strGender != null) {
+            try {
+                gender = GenderEnum.valueOf(strGender.toUpperCase());
+            } catch (Exception ex) {
+                gender = GenderEnum.UNKNOWN;
+            }
         }
     }
 
@@ -56,10 +58,12 @@ public class Teacher {
     }
 
     public void setGender(String strGender) {
-        try {
-            gender = GenderEnum.valueOf(strGender.toUpperCase());
-        } catch (Exception ex) {
-            gender = GenderEnum.UNKNOWN;
+        if (strGender != null) {
+            try {
+                gender = GenderEnum.valueOf(strGender.toUpperCase());
+            } catch (Exception ex) {
+                gender = GenderEnum.UNKNOWN;
+            }
         }
     }
 

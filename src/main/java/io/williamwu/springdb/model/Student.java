@@ -20,11 +20,14 @@ public class Student {
         this.id = id;
         this.studentName = studentName;
         this.age = age;
-        try {
-            gender = GenderEnum.valueOf(strGender.toUpperCase());
-        } catch (Exception ex) {
-            gender = GenderEnum.UNKNOWN;
+        if (strGender != null) {
+            try {
+                gender = GenderEnum.valueOf(strGender.toUpperCase());
+            } catch (Exception ex) {
+                gender = GenderEnum.UNKNOWN;
+            }
         }
+
     }
 
     public Integer getId() {
@@ -56,10 +59,12 @@ public class Student {
     }
 
     public void setGender(String strGender) {
-        try {
-            gender = GenderEnum.valueOf(strGender.toUpperCase());
-        } catch (Exception ex) {
-            gender = GenderEnum.UNKNOWN;
+        if (strGender != null) {
+            try {
+                gender = GenderEnum.valueOf(strGender.toUpperCase());
+            } catch (Exception ex) {
+                gender = GenderEnum.UNKNOWN;
+            }
         }
     }
 

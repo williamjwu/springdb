@@ -31,9 +31,9 @@ public class StudentController {
 
     @PostMapping(value = "/student/update")
     public int update(@RequestParam(name = "id") Integer id,
-                      @RequestParam(name = "new_name", required = false) String newName,
-                      @RequestParam(name = "new_age", required = false) Integer newAge,
-                      @RequestParam(name = "new_gender", required = false) String newGender) {
+                      @RequestParam(name = "student_name", required = false) String newName,
+                      @RequestParam(name = "student_age", required = false) Integer newAge,
+                      @RequestParam(name = "student_gender", required = false) String newGender) {
         return service.update(new Student(id, newName, newAge, newGender));
     }
 
