@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class SubjectService implements io.williamwu.springdb.service.Service<Subject> {
+public class SubjectService implements dbService<Subject> {
 
     @Resource
     private SubjectMapper mapper;

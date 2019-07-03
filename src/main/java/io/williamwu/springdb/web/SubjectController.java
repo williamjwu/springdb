@@ -1,7 +1,7 @@
-package io.williamwu.springdb.controller;
+package io.williamwu.springdb.web;
 
 import io.williamwu.springdb.model.Subject;
-import io.williamwu.springdb.service.Service;
+import io.williamwu.springdb.service.dbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 public class SubjectController {
 
     @Autowired
-    private Service<Subject> service;
+    private dbService<Subject> service;
 
     @GetMapping(value = "/subject/getAll")
     public List<Subject> getAll() {

@@ -2,7 +2,7 @@ package io.williamwu.springdb.service;
 
 import java.util.List;
 
-public interface Service<E> {
+public interface dbService<E> {
 
     List<E> getAll();
 

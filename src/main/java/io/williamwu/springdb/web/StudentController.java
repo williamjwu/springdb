@@ -1,7 +1,7 @@
-package io.williamwu.springdb.controller;
+package io.williamwu.springdb.web;
 
 import io.williamwu.springdb.model.Student;
-import io.williamwu.springdb.service.Service;
+import io.williamwu.springdb.service.dbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 public class StudentController {
 
     @Autowired
-    private Service<Student> service;
+    private dbService<Student> service;
 
     @GetMapping(value = "/student/getAll")
     public List<Student> getAll() {

@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class TeacherService implements io.williamwu.springdb.service.Service<Teacher> {
+public class TeacherService implements dbService<Teacher> {
 
     @Resource
     private TeacherMapper mapper;
