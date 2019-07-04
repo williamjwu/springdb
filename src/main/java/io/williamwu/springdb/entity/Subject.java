@@ -1,4 +1,4 @@
-package io.williamwu.springdb.model;
+package io.williamwu.springdb.entity;
 
 import io.williamwu.springdb.enums.DayEnum;
 import io.williamwu.springdb.enums.PeriodEnum;

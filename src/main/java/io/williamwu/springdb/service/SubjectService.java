@@ -1,7 +1,7 @@
 package io.williamwu.springdb.service;
 
 import io.williamwu.springdb.mapper.SubjectMapper;
-import io.williamwu.springdb.model.Subject;
+import io.williamwu.springdb.entity.Subject;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;

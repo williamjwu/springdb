@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.williamwu.springdb.mapper.SubjectMapper">
-    <resultMap id="ResultMap" type="io.williamwu.springdb.model.Subject" >
+    <resultMap id="ResultMap" type="io.williamwu.springdb.entity.Subject" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="subject_name" property="subjectName" jdbcType="VARCHAR" />
         <result column="teacher_id" property="teacherId" jdbcType="INTEGER" />
@@ -13,7 +13,7 @@
     <select id="getAll" resultMap="ResultMap">
         SELECT * FROM subject;
     </select>
-    <select id="get" parameterType="io.williamwu.springdb.model.Subject" resultMap="ResultMap">
+    <select id="get" parameterType="io.williamwu.springdb.entity.Subject" resultMap="ResultMap">
         SELECT * FROM subject
         <where>
             <if test="id != null">id = #{id}</if>
@@ -23,11 +23,11 @@
             <if test="subjectPeriod != null">AND subject_period = #{subjectPeriod},</if>
         </where>;
     </select>
-    <insert id="insert" parameterType="io.williamwu.springdb.model.Subject">
+    <insert id="insert" parameterType="io.williamwu.springdb.entity.Subject">
         INSERT INTO subject (create_time, subject_name, subject_day, subject_period)
         VALUES (now(), #{subjectName}, #{subjectDay}, #{subjectPeriod});
     </insert>
-    <update id="update" parameterType="io.williamwu.springdb.model.Subject" >
+    <update id="update" parameterType="io.williamwu.springdb.entity.Subject" >
         UPDATE subject SET
         <if test="subjectName != null">subject_name = #{subjectName},</if>
         <if test="subjectDay != null">subject_day = #{subjectDay},</if>
@@ -37,7 +37,7 @@
         WHERE
         id = #{id}
     </update>
-    <delete id="delete" parameterType="io.williamwu.springdb.model.Subject">
+    <delete id="delete" parameterType="io.williamwu.springdb.entity.Subject">
         DELETE from subject
         <where>
             <if test="id != null">id = #{id}</if>

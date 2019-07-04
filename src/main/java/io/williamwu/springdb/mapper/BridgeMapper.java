@@ -1,8 +1,8 @@
 package io.williamwu.springdb.mapper;
 
-import io.williamwu.springdb.model.Student;
-import io.williamwu.springdb.model.Subject;
-import io.williamwu.springdb.model.Teacher;
+import io.williamwu.springdb.entity.Student;
+import io.williamwu.springdb.entity.Subject;
+import io.williamwu.springdb.entity.Teacher;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;

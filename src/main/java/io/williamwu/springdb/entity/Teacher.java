@@ -1,24 +1,24 @@
-package io.williamwu.springdb.model;
+package io.williamwu.springdb.entity;
 
 import io.williamwu.springdb.enums.GenderEnum;
 
 import java.util.Date;
 
-public class Student {
+public class Teacher {
 
     private Integer id;
-    private String studentName;
+    private String teacherName;
     private Integer age;
     private GenderEnum gender;
     private Date createTime;
     private Date modifyTime;
 
-    public Student() {
+    public Teacher() {
     }
 
-    public Student(Integer id, String studentName, Integer age, String strGender) {
+    public Teacher(Integer id, String teacherName, Integer age, String strGender) {
         this.id = id;
-        this.studentName = studentName;
+        this.teacherName = teacherName;
         this.age = age;
         if (strGender != null) {
             try {
@@ -27,7 +27,6 @@ public class Student {
                 gender = GenderEnum.UNKNOWN;
             }
         }
-
     }
 
     public Integer getId() {
@@ -38,12 +37,12 @@ public class Student {
         this.id = id;
     }
 
-    public String getStudentName() {
-        return studentName;
+    public String getTeacherName() {
+        return teacherName;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
     public Integer getAge() {
@@ -86,9 +85,9 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "Teacher{" +
                 "id=" + id +
-                ", studentName='" + studentName + '\'' +
+                ", teacherName='" + teacherName + '\'' +
                 ", age=" + age +
                 ", gender=" + gender +
                 ", createTime=" + createTime +

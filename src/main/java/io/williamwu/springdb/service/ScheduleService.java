@@ -1,7 +1,7 @@
 package io.williamwu.springdb.service;
 
 import io.williamwu.springdb.mapper.ScheduleMapper;
-import io.williamwu.springdb.model.Schedule;
+import io.williamwu.springdb.entity.Schedule;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;

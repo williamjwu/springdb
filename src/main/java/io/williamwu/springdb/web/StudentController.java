@@ -1,7 +1,7 @@
 package io.williamwu.springdb.web;
 
-import io.williamwu.springdb.model.Student;
-import io.williamwu.springdb.model.Subject;
+import io.williamwu.springdb.entity.Student;
+import io.williamwu.springdb.entity.Subject;
 import io.williamwu.springdb.service.BridgeService;
 import io.williamwu.springdb.service.dbService;
 import org.springframework.beans.factory.annotation.Autowired;

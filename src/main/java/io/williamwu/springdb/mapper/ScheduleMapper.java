@@ -1,6 +1,6 @@
 package io.williamwu.springdb.mapper;
 
-import io.williamwu.springdb.model.Schedule;
+import io.williamwu.springdb.entity.Schedule;
 import java.util.List;
 
 public interface ScheduleMapper {

@@ -1,6 +1,6 @@
 package io.williamwu.springdb.mapper;
 
-import io.williamwu.springdb.model.Subject;
+import io.williamwu.springdb.entity.Subject;
 import java.util.List;
 
 public interface SubjectMapper {
