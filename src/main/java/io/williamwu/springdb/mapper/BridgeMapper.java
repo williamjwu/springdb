@@ -51,9 +51,11 @@ public interface BridgeMapper {
     })
     List<Subject> studentFindSubjects(Student student);
 
-    @Select("SELECT * FROM student WHERE id IN " +
-            "(SELECT student_id FROM springdb.schedule skd INNER JOIN springdb.subject sbj ON skd.subject_id = sbj.id " +
-            "WHERE sbj.teacher_id = #{id})")
+    @Select("SELECT * FROM springdb.student stu LEFT JOIN springdb.schedule skd " +
+            "ON stu.id = skd.student_id " +
+            "LEFT JOIN springdb.subject sbj " +
+            "ON skd.subject_id = sbj.id " +
+            "WHERE sbj.teacher_id = #{id}")
     @Results(value = {
             @Result(property = "id", column = "id", jdbcType = INTEGER),
             @Result(property = "studentName", column = "student_name", jdbcType = VARCHAR),
