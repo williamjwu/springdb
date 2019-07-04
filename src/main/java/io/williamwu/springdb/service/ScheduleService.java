@@ -16,8 +16,8 @@ public class ScheduleService implements dbService<Schedule> {
         return mapper.getAll();
     }
 
-    public Schedule get(Integer id) {
-        return mapper.get(id);
+    public List<Schedule> get(Schedule schedule) {
+        return mapper.get(schedule);
     }
 
     public int insert(Schedule schedule) {
@@ -28,8 +28,8 @@ public class ScheduleService implements dbService<Schedule> {
         return mapper.update(schedule);
     }
 
-    public int delete(Integer id) {
-        return mapper.delete(id);
+    public int delete(Schedule schedule) {
+        return mapper.delete(schedule);
     }
 
 }

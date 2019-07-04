@@ -12,8 +12,14 @@
     <select id="getAll" resultMap="ResultMap">
         SELECT * FROM student;
     </select>
-    <select id="get" parameterType="java.lang.Integer" resultMap="ResultMap">
-        SELECT * FROM student WHERE id = #{id};
+    <select id="get" parameterType="io.williamwu.springdb.model.Student" resultMap="ResultMap">
+        SELECT * FROM student
+        <where>
+            <if test="id != null">id = #{id}</if>
+            <if test="studentName != null">AND student_name = #{studentName}</if>
+            <if test="age != null">AND student_age = #{age}</if>
+            <if test="gender != null">AND student_gender = #{gender}</if>
+        </where>;
     </select>
     <insert id="insert" parameterType="io.williamwu.springdb.model.Student">
         INSERT INTO student (create_time, student_name, student_age, student_gender)
@@ -28,7 +34,13 @@
         WHERE
         id = #{id}
     </update>
-    <delete id="delete" parameterType="java.lang.Integer">
-        DELETE from student WHERE id = #{id};
+    <delete id="delete" parameterType="io.williamwu.springdb.model.Student">
+        DELETE from student
+        <where>
+            <if test="id != null">id = #{id}</if>
+            <if test="studentName != null">AND student_name = #{studentName}</if>
+            <if test="age != null">AND student_age = #{age}</if>
+            <if test="gender != null">AND student_gender = #{gender}</if>
+        </where>;
     </delete>
 </mapper>

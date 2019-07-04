@@ -6,12 +6,12 @@ public interface dbService<E> {
 
     List<E> getAll();
 
-    E get(Integer id);
+    List<E> get(E obj);
 
     int insert(E obj);
 
     int update(E obj);
 
-    int delete(Integer id);
+    int delete(E obj);
 
 }

@@ -7,12 +7,12 @@ public interface ScheduleMapper {
 
     List<Schedule> getAll();
 
-    Schedule get(Integer id);
+    List<Schedule> get(Schedule schedule);
 
     int insert(Schedule schedule);
 
     int update(Schedule schedule);
 
-    int delete(Integer id);
+    int delete(Schedule schedule);
 
 }

@@ -11,8 +11,13 @@
     <select id="getAll" resultMap="ResultMap">
         SELECT * FROM schedule;
     </select>
-    <select id="get" parameterType="java.lang.Integer" resultMap="ResultMap">
-        SELECT * FROM schedule WHERE id = #{id};
+    <select id="get" parameterType="io.williamwu.springdb.model.Schedule" resultMap="ResultMap">
+        SELECT * FROM schedule
+        <where>
+            <if test="id != null">id = #{id}</if>
+            <if test="studentId != null">AND student_id = #{studentId}</if>
+            <if test="subjectId != null">AND subject_id = #{subjectId}</if>
+        </where>;
     </select>
     <insert id="insert" parameterType="io.williamwu.springdb.model.Schedule">
         INSERT INTO schedule (create_time, student_id, subject_id)
@@ -26,7 +31,12 @@
         WHERE
         id = #{id}
     </update>
-    <delete id="delete" parameterType="java.lang.Integer">
-        DELETE from schedule WHERE id = #{id};
+    <delete id="delete" parameterType="io.williamwu.springdb.model.Schedule">
+        DELETE from schedule
+        <where>
+            <if test="id != null">id = #{id}</if>
+            <if test="studentId != null">AND student_id = #{studentId}</if>
+            <if test="subjectId != null">AND subject_id = #{subjectId}</if>
+        </where>;
     </delete>
 </mapper>

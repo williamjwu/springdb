@@ -7,12 +7,12 @@ public interface SubjectMapper {
 
     List<Subject> getAll();
 
-    Subject get(Integer id);
+    List<Subject> get(Subject subject);
 
     int insert(Subject subject);
 
     int update(Subject subject);
 
-    int delete(Integer id);
+    int delete(Subject subject);
 
 }

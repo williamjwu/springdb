@@ -16,8 +16,8 @@ public class SubjectService implements dbService<Subject> {
         return mapper.getAll();
     }
 
-    public Subject get(Integer id) {
-        return mapper.get(id);
+    public List<Subject> get(Subject subject) {
+        return mapper.get(subject);
     }
 
     public int insert(Subject subject) {
@@ -28,8 +28,8 @@ public class SubjectService implements dbService<Subject> {
         return mapper.update(subject);
     }
 
-    public int delete(Integer id) {
-        return mapper.delete(id);
+    public int delete(Subject subject) {
+        return mapper.delete(subject);
     }
 
 }

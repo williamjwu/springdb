@@ -34,7 +34,6 @@ public class Subject {
                 subjectPeriod = PeriodEnum.UNKNOWN;
             }
         }
-
     }
 
     public Integer getTeacherId() {

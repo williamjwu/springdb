@@ -16,8 +16,8 @@ public class TeacherService implements dbService<Teacher> {
         return mapper.getAll();
     }
 
-    public Teacher get(Integer id) {
-        return mapper.get(id);
+    public List<Teacher> get(Teacher teacher) {
+        return mapper.get(teacher);
     }
 
     public int insert(Teacher teacher) {
@@ -28,8 +28,8 @@ public class TeacherService implements dbService<Teacher> {
         return mapper.update(teacher);
     }
 
-    public int delete(Integer id) {
-        return mapper.delete(id);
+    public int delete(Teacher teacher) {
+        return mapper.delete(teacher);
     }
 
 }

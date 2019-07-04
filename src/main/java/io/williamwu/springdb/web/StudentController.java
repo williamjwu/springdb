@@ -1,6 +1,7 @@
 package io.williamwu.springdb.web;
 
 import io.williamwu.springdb.model.Student;
+import io.williamwu.springdb.model.Subject;
 import io.williamwu.springdb.service.dbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,23 +11,31 @@ import java.util.List;
 public class StudentController {
 
     @Autowired
-    private dbService<Student> service;
-
-    @GetMapping(value = "/student/getAll")
-    public List<Student> getAll() {
-        return service.getAll();
-    }
-
-    @GetMapping(value = "/student/get")
-    public Student get(@RequestParam(name = "id") Integer id) {
-        return service.get(id);
-    }
+    private dbService<Student> studentService;
 
     @PostMapping(value = "/student/insert")
     public int insert(@RequestParam(name = "student_name") String name,
                       @RequestParam(name = "student_age") Integer age,
                       @RequestParam(name = "student_gender") String gender) {
-        return service.insert(new Student(null, name, age, gender));
+        return studentService.insert(new Student(null, name, age, gender));
+    }
+
+    @GetMapping(value = "/student")
+    public List<Student> getAll() {
+        return studentService.getAll();
+    }
+
+    @GetMapping(value = "/student/{id}")
+    public List<Student> get(@PathVariable Integer id) {
+        Student student = new Student();
+        student.setId(id);
+        return studentService.get(student);
+    }
+
+    // TODO
+    @GetMapping(value = "/student/getSubjects")
+    public List<Subject> getSubjects(@RequestParam(name = "student_name") String name) {
+        return null;
     }
 
     @PostMapping(value = "/student/update")
@@ -34,12 +43,14 @@ public class StudentController {
                       @RequestParam(name = "student_name", required = false) String newName,
                       @RequestParam(name = "student_age", required = false) Integer newAge,
                       @RequestParam(name = "student_gender", required = false) String newGender) {
-        return service.update(new Student(id, newName, newAge, newGender));
+        return studentService.update(new Student(id, newName, newAge, newGender));
     }
 
     @DeleteMapping(value = "/student/delete")
     public int delete(@RequestParam(name="id") Integer id) {
-        return service.delete(id);
+        Student student = new Student();
+        student.setId(id);
+        return studentService.delete(student);
     }
 
 }

@@ -16,8 +16,8 @@ public class StudentService implements dbService<Student> {
         return mapper.getAll();
     }
 
-    public Student get(Integer id) {
-        return mapper.get(id);
+    public List<Student> get(Student student) {
+        return mapper.get(student);
     }
 
     public int insert(Student student) {
@@ -28,8 +28,8 @@ public class StudentService implements dbService<Student> {
         return mapper.update(student);
     }
 
-    public int delete(Integer id) {
-        return mapper.delete(id);
+    public int delete(Student student) {
+        return mapper.delete(student);
     }
 
 }

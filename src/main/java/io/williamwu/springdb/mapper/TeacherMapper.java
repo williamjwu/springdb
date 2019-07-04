@@ -7,12 +7,12 @@ public interface TeacherMapper {
 
     List<Teacher> getAll();
 
-    Teacher get(Integer id);
+    List<Teacher> get(Teacher teacher);
 
     int insert(Teacher teacher);
 
     int update(Teacher teacher);
 
-    int delete(Integer id);
+    int delete(Teacher teacher);
 
 }
