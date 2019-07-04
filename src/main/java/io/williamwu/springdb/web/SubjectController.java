@@ -8,8 +8,6 @@ import io.williamwu.springdb.service.BridgeService;
 import io.williamwu.springdb.service.dbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.LinkedList;
 import java.util.List;
 
 @RestController
@@ -48,10 +46,9 @@ public class SubjectController {
         return bridgeService.subjectFindTeachers(name);
     }
 
-    // TODO
     @GetMapping(value = "/subject/getStudents")
     public List<Student> getStudents(@RequestParam(name = "subject_name") String name) {
-        return null;
+        return bridgeService.subjectFindStudents(name);
     }
 
     @PostMapping(value = "/subject/addTeacher")
@@ -91,7 +88,7 @@ public class SubjectController {
     }
 
     @DeleteMapping(value = "/subject/delete")
-    public int delete(@RequestParam(name="id") Integer id) {
+    public int delete(@RequestParam(name = "id") Integer id) {
         Subject subject = new Subject();
         subject.setId(id);
         return subjectService.delete(subject);

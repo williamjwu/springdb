@@ -2,6 +2,7 @@ package io.williamwu.springdb.web;
 
 import io.williamwu.springdb.model.Student;
 import io.williamwu.springdb.model.Subject;
+import io.williamwu.springdb.service.BridgeService;
 import io.williamwu.springdb.service.dbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,9 @@ public class StudentController {
 
     @Autowired
     private dbService<Student> studentService;
+
+    @Autowired
+    private BridgeService bridgeService;
 
     @PostMapping(value = "/student/insert")
     public int insert(@RequestParam(name = "student_name") String name,
@@ -32,10 +36,9 @@ public class StudentController {
         return studentService.get(student);
     }
 
-    // TODO
     @GetMapping(value = "/student/getSubjects")
     public List<Subject> getSubjects(@RequestParam(name = "student_name") String name) {
-        return null;
+        return bridgeService.studentFindSubjects(name);
     }
 
     @PostMapping(value = "/student/update")

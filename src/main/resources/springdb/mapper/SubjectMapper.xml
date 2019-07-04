@@ -4,7 +4,7 @@
     <resultMap id="ResultMap" type="io.williamwu.springdb.model.Subject" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="subject_name" property="subjectName" jdbcType="VARCHAR" />
-        <result column="subject_teacher_id" property="teacherId" jdbcType="INTEGER" />
+        <result column="teacher_id" property="teacherId" jdbcType="INTEGER" />
         <result column="subject_day" property="subjectDay" jdbcType="VARCHAR" />
         <result column="subject_period" property="subjectPeriod" jdbcType="VARCHAR" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -18,7 +18,7 @@
         <where>
             <if test="id != null">id = #{id}</if>
             <if test="subjectName != null">AND subject_name = #{subjectName}</if>
-            <if test="teacherId != null">AND subject_teacher_id = #{teacherId}</if>
+            <if test="teacherId != null">AND teacher_id = #{teacherId}</if>
             <if test="subjectDay != null">AND subject_day = #{subjectDay}</if>
             <if test="subjectPeriod != null">AND subject_period = #{subjectPeriod},</if>
         </where>;
@@ -32,7 +32,7 @@
         <if test="subjectName != null">subject_name = #{subjectName},</if>
         <if test="subjectDay != null">subject_day = #{subjectDay},</if>
         <if test="subjectPeriod != null">subject_period = #{subjectPeriod},</if>
-        subject_teacher_id = #{teacherId},
+        teacher_id = #{teacherId},
         modify_time = now()
         WHERE
         id = #{id}
@@ -42,7 +42,7 @@
         <where>
             <if test="id != null">id = #{id}</if>
             <if test="subjectName != null">AND subject_name = #{subjectName}</if>
-            <if test="teacherId != null">AND subject_teacher_id = #{teacherId}</if>
+            <if test="teacherId != null">AND teacher_id = #{teacherId}</if>
             <if test="subjectDay != null">AND subject_day = #{subjectDay}</if>
             <if test="subjectPeriod != null">AND subject_period = #{subjectPeriod},</if>
         </where>;

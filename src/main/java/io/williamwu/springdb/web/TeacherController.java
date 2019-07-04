@@ -1,7 +1,5 @@
 package io.williamwu.springdb.web;
 
-import io.williamwu.springdb.mapper.BridgeMapper;
-import io.williamwu.springdb.model.Schedule;
 import io.williamwu.springdb.model.Student;
 import io.williamwu.springdb.model.Subject;
 import io.williamwu.springdb.model.Teacher;
@@ -9,9 +7,6 @@ import io.williamwu.springdb.service.BridgeService;
 import io.williamwu.springdb.service.dbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import java.util.LinkedList;
 import java.util.List;
 
 @RestController
@@ -19,15 +14,6 @@ public class TeacherController {
 
     @Autowired
     private dbService<Teacher> teacherService;
-
-    @Autowired
-    private dbService<Subject> subjectService;
-
-    @Autowired
-    private dbService<Schedule> scheduleService;
-
-    @Autowired
-    private dbService<Student> studentService;
 
     @Autowired
     private BridgeService bridgeService;
@@ -56,10 +42,9 @@ public class TeacherController {
         return bridgeService.teacherFindSubjects(name);
     }
 
-    // TODO
     @GetMapping(value = "teacher/getStudents")
     public List<Student> getStudents(@RequestParam(name = "teacher_name") String name) {
-        return null;
+        return bridgeService.teacherFindStudents(name);
     }
 
     @PostMapping(value = "/teacher/update")
