@@ -13,7 +13,9 @@ import static org.apache.ibatis.type.JdbcType.INTEGER;
 
 public interface BridgeMapper {
 
-    @Select("SELECT * FROM student WHERE id IN (SELECT student_id FROM schedule WHERE subject_id = #{id})")
+    @Select("SELECT * FROM springdb.student stu LEFT JOIN springdb.schedule skd " +
+            "ON stu.id = skd.student_id " +
+            "WHERE skd.subject_id = #{id}")
     @Results(value = {
             @Result(property = "id", column = "id", jdbcType = INTEGER),
             @Result(property = "studentName", column = "student_name", jdbcType = VARCHAR),
@@ -35,7 +37,9 @@ public interface BridgeMapper {
     })
     List<Teacher> subjectFindTeachers(Subject subject);
 
-    @Select("SELECT * FROM subject WHERE id IN (SELECT subject_id FROM schedule WHERE student_id = #{id})")
+    @Select("SELECT * FROM springdb.subject sbj LEFT JOIN springdb.schedule skd " +
+            "ON sbj.id = skd.subject_id " +
+            "WHERE skd.student_id = #{id}")
     @Results(value = {
             @Result(property = "id", column = "id", jdbcType = INTEGER),
             @Result(property = "subjectName", column = "subject_name", jdbcType = VARCHAR),
