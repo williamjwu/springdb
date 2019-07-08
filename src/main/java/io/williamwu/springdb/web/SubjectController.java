@@ -5,7 +5,8 @@ import io.williamwu.springdb.entity.Student;
 import io.williamwu.springdb.entity.Subject;
 import io.williamwu.springdb.entity.Teacher;
 import io.williamwu.springdb.service.BridgeService;
-import io.williamwu.springdb.service.dbService;
+import io.williamwu.springdb.service.ScheduleService;
+import io.williamwu.springdb.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -14,10 +15,10 @@ import java.util.List;
 public class SubjectController {
 
     @Autowired
-    private dbService<Subject> subjectService;
+    private SubjectService subjectService;
 
     @Autowired
-    private dbService<Schedule> scheduleService;
+    private ScheduleService scheduleService;
 
     @Autowired
     private BridgeService bridgeService;
@@ -52,19 +53,16 @@ public class SubjectController {
     }
 
     @PostMapping(value = "/subject/addTeacher")
-    public int addTeacher(@RequestParam(name = "id") Integer id,
+    public int addTeacher(@RequestParam(name = "subject_id") Integer subjectId,
                           @RequestParam(name = "teacher_id") Integer teacherId) {
-        Subject subject = new Subject();
-        subject.setId(id);
+        Subject subject = new Subject(subjectId, null, null, null);
         subject.setTeacherId(teacherId);
-        return subjectService.update(subject);
+        return subjectService.updateTeacherId(subject);
     }
 
     @PostMapping(value = "/subject/rmTeacher")
-    public int rmTeacher(@RequestParam(name = "id") Integer id) {
-        Subject subject = new Subject();
-        subject.setId(id);
-        return subjectService.update(subject);
+    public int rmTeacher(@RequestParam(name = "subject_id") Integer subjectId) {
+        return subjectService.updateTeacherId(new Subject(subjectId, null, null, null));
     }
 
     @PostMapping(value = "/subject/addStudent")
@@ -80,7 +78,7 @@ public class SubjectController {
     }
 
     @PostMapping(value = "/subject/update")
-    public int update(@RequestParam(name = "id") Integer id,
+    public int update(@RequestParam(name = "subject_id") Integer id,
                       @RequestParam(name = "subject_name", required = false) String newName,
                       @RequestParam(name = "subject_day", required = false) String newDay,
                       @RequestParam(name = "subject_period", required = false) String newPeriod) {
@@ -88,7 +86,7 @@ public class SubjectController {
     }
 
     @DeleteMapping(value = "/subject/delete")
-    public int delete(@RequestParam(name = "id") Integer id) {
+    public int delete(@RequestParam(name = "subject_id") Integer id) {
         Subject subject = new Subject();
         subject.setId(id);
         return subjectService.delete(subject);

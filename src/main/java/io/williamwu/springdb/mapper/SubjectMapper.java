@@ -15,4 +15,6 @@ public interface SubjectMapper {
 
     int delete(Subject subject);
 
+    int updateTeacherId(Subject subject);
+
 }

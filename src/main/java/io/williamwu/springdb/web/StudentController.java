@@ -42,7 +42,7 @@ public class StudentController {
     }
 
     @PostMapping(value = "/student/update")
-    public int update(@RequestParam(name = "id") Integer id,
+    public int update(@RequestParam(name = "student_id") Integer id,
                       @RequestParam(name = "student_name", required = false) String newName,
                       @RequestParam(name = "student_age", required = false) Integer newAge,
                       @RequestParam(name = "student_gender", required = false) String newGender) {
@@ -50,7 +50,7 @@ public class StudentController {
     }
 
     @DeleteMapping(value = "/student/delete")
-    public int delete(@RequestParam(name="id") Integer id) {
+    public int delete(@RequestParam(name="student_id") Integer id) {
         Student student = new Student();
         student.setId(id);
         return studentService.delete(student);

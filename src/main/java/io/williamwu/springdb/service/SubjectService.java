@@ -1,8 +1,10 @@
 package io.williamwu.springdb.service;
 
+import io.williamwu.springdb.entity.Schedule;
 import io.williamwu.springdb.mapper.SubjectMapper;
 import io.williamwu.springdb.entity.Subject;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -11,6 +13,9 @@ public class SubjectService implements dbService<Subject> {
 
     @Resource
     private SubjectMapper mapper;
+
+    @Resource
+    private ScheduleService scheduleService;
 
     public List<Subject> getAll() {
         return mapper.getAll();
@@ -30,6 +35,13 @@ public class SubjectService implements dbService<Subject> {
 
     public int delete(Subject subject) {
         return mapper.delete(subject);
+    }
+
+    public int updateTeacherId(Subject subject) {
+        Schedule schedule = new Schedule();
+        schedule.setSubjectId(subject.getId());
+        schedule.setTeacherId(subject.getTeacherId());
+        return mapper.updateTeacherId(subject) + scheduleService.updateTeacherId(schedule);
     }
 
 }

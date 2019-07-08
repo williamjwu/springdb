@@ -7,6 +7,7 @@ public class Schedule {
     private Integer id;
     private Integer studentId;
     private Integer subjectId;
+    private Integer teacherId;
     private Date createTime;
     private Date modifyTime;
 
@@ -43,6 +44,14 @@ public class Schedule {
         this.subjectId = subjectId;
     }
 
+    public Integer getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -65,6 +74,7 @@ public class Schedule {
                 "id=" + id +
                 ", studentId=" + studentId +
                 ", subjectId=" + subjectId +
+                ", teacherId=" + teacherId +
                 ", createTime=" + createTime +
                 ", modifyTime=" + modifyTime +
                 '}';

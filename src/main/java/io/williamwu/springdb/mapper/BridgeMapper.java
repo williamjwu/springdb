@@ -13,9 +13,10 @@ import static org.apache.ibatis.type.JdbcType.INTEGER;
 
 public interface BridgeMapper {
 
-    @Select("SELECT * FROM springdb.student stu LEFT JOIN springdb.schedule skd " +
-            "ON stu.id = skd.student_id " +
-            "WHERE skd.subject_id = #{id}")
+    @Select("SELECT stu.* FROM subject sbj " +
+            "JOIN schedule skd ON sbj.id = skd.subject_id " +
+            "JOIN student stu ON skd.student_id = stu.id " +
+            "WHERE sbj.subject_name = #{name}")
     @Results(value = {
             @Result(property = "id", column = "id", jdbcType = INTEGER),
             @Result(property = "studentName", column = "student_name", jdbcType = VARCHAR),
@@ -24,9 +25,11 @@ public interface BridgeMapper {
             @Result(property = "createTime", column = "create_time", jdbcType = TIMESTAMP),
             @Result(property = "modifyTime", column = "modify_time", jdbcType = TIMESTAMP)
     })
-    List<Student> subjectFindStudents(Subject subject);
+    List<Student> subjectFindStudents(String name);
 
-    @Select("SELECT * FROM teacher WHERE id = #{teacherId}")
+    @Select("SELECT tch.* FROM subject sbj " +
+            "JOIN teacher tch ON sbj.teacher_id = tch.id " +
+            "WHERE sbj.subject_name = #{name}")
     @Results(value = {
             @Result(property = "id", column = "id", jdbcType = INTEGER),
             @Result(property = "teacherName", column = "teacher_name", jdbcType = VARCHAR),
@@ -35,27 +38,27 @@ public interface BridgeMapper {
             @Result(property = "createTime", column = "create_time", jdbcType = TIMESTAMP),
             @Result(property = "modifyTime", column = "modify_time", jdbcType = TIMESTAMP)
     })
-    List<Teacher> subjectFindTeachers(Subject subject);
+    List<Teacher> subjectFindTeachers(String name);
 
-    @Select("SELECT * FROM springdb.subject sbj LEFT JOIN springdb.schedule skd " +
-            "ON sbj.id = skd.subject_id " +
-            "WHERE skd.student_id = #{id}")
+    @Select("SELECT sbj.* FROM subject sbj " +
+            "JOIN schedule skd ON sbj.id = skd.subject_id " +
+            "JOIN student stu ON skd.student_id = stu.id " +
+            "WHERE stu.student_name = #{name}")
     @Results(value = {
             @Result(property = "id", column = "id", jdbcType = INTEGER),
             @Result(property = "subjectName", column = "subject_name", jdbcType = VARCHAR),
-            @Result(property = "teacherId", column = "teacher_id", jdbcType = INTEGER),
             @Result(property = "subjectDay", column = "subject_day", jdbcType = VARCHAR),
             @Result(property = "subjectPeriod", column = "subject_period", jdbcType = VARCHAR),
             @Result(property = "createTime", column = "create_time", jdbcType = TIMESTAMP),
-            @Result(property = "modifyTime", column = "modify_time", jdbcType = TIMESTAMP)
+            @Result(property = "modifyTime", column = "modify_time", jdbcType = TIMESTAMP),
+            @Result(property = "teacherId", column = "teacher_id", jdbcType = INTEGER)
     })
-    List<Subject> studentFindSubjects(Student student);
+    List<Subject> studentFindSubjects(String name);
 
-    @Select("SELECT * FROM springdb.student stu LEFT JOIN springdb.schedule skd " +
-            "ON stu.id = skd.student_id " +
-            "LEFT JOIN springdb.subject sbj " +
-            "ON skd.subject_id = sbj.id " +
-            "WHERE sbj.teacher_id = #{id}")
+    @Select("SELECT stu.* FROM teacher tch " +
+            "JOIN schedule skd ON skd.teacher_id = tch.id " +
+            "JOIN student stu ON skd.student_id = stu.id " +
+            "WHERE tch.teacher_name = #{name}")
     @Results(value = {
             @Result(property = "id", column = "id", jdbcType = INTEGER),
             @Result(property = "studentName", column = "student_name", jdbcType = VARCHAR),
@@ -64,18 +67,20 @@ public interface BridgeMapper {
             @Result(property = "createTime", column = "create_time", jdbcType = TIMESTAMP),
             @Result(property = "modifyTime", column = "modify_time", jdbcType = TIMESTAMP)
     })
-    List<Student> teacherFindStudents(Teacher teacher);
+    List<Student> teacherFindStudents(String name);
 
-    @Select("SELECT * FROM subject WHERE teacher_id = #{id}")
+    @Select("SELECT sbj.* FROM subject sbj " +
+            "JOIN teacher tch ON sbj.teacher_id = tch.id " +
+            "WHERE tch.teacher_name = #{name}")
     @Results(value = {
             @Result(property = "id", column = "id", jdbcType = INTEGER),
             @Result(property = "subjectName", column = "subject_name", jdbcType = VARCHAR),
-            @Result(property = "teacherId", column = "teacher_id", jdbcType = INTEGER),
             @Result(property = "subjectDay", column = "subject_day", jdbcType = VARCHAR),
             @Result(property = "subjectPeriod", column = "subject_period", jdbcType = VARCHAR),
             @Result(property = "createTime", column = "create_time", jdbcType = TIMESTAMP),
-            @Result(property = "modifyTime", column = "modify_time", jdbcType = TIMESTAMP)
+            @Result(property = "modifyTime", column = "modify_time", jdbcType = TIMESTAMP),
+            @Result(property = "teacherId", column = "teacher_id", jdbcType = INTEGER)
     })
-    List<Subject> teacherFindSubjects(Teacher teacher);
+    List<Subject> teacherFindSubjects(String name);
 
 }

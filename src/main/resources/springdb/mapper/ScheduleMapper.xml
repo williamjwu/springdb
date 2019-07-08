@@ -5,11 +5,12 @@
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="student_id" property="studentId" jdbcType="INTEGER" />
         <result column="subject_id" property="subjectId" jdbcType="INTEGER" />
+        <result column="teacher_id" property="teacherId" jdbcType="INTEGER" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
         <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
     </resultMap>
     <select id="getAll" resultMap="ResultMap">
-        SELECT * FROM schedule;
+        SELECT * FROM schedule
     </select>
     <select id="get" parameterType="io.williamwu.springdb.entity.Schedule" resultMap="ResultMap">
         SELECT * FROM schedule
@@ -17,13 +18,14 @@
             <if test="id != null">id = #{id}</if>
             <if test="studentId != null">AND student_id = #{studentId}</if>
             <if test="subjectId != null">AND subject_id = #{subjectId}</if>
-        </where>;
+            <if test="teacherId != null">AND teacher_id = #{teacherId}</if>
+        </where>
     </select>
     <insert id="insert" parameterType="io.williamwu.springdb.entity.Schedule">
         INSERT INTO schedule (create_time, student_id, subject_id)
-        VALUES (now(), #{studentId}, #{subjectId});
+        VALUES (now(), #{studentId}, #{subjectId})
     </insert>
-    <update id="update" parameterType="io.williamwu.springdb.entity.Schedule" >
+    <update id="update" parameterType="io.williamwu.springdb.entity.Schedule">
         UPDATE schedule SET
         <if test="studentId != null">student_id = #{studentId},</if>
         <if test="subjectId != null">subject_id = #{subjectId},</if>
@@ -31,12 +33,20 @@
         WHERE
         id = #{id}
     </update>
+    <update id="updateTeacherId" parameterType="io.williamwu.springdb.entity.Schedule">
+        UPDATE schedule SET
+        teacher_id = #{teacherId},
+        modify_time = now()
+        WHERE
+        subject_id = #{subjectId}
+    </update>
     <delete id="delete" parameterType="io.williamwu.springdb.entity.Schedule">
         DELETE from schedule
         <where>
             <if test="id != null">id = #{id}</if>
             <if test="studentId != null">AND student_id = #{studentId}</if>
             <if test="subjectId != null">AND subject_id = #{subjectId}</if>
-        </where>;
+            <if test="teacherId != null">AND teacher_id = #{teacherId}</if>
+        </where>
     </delete>
 </mapper>

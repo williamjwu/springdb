@@ -48,7 +48,7 @@ public class TeacherController {
     }
 
     @PostMapping(value = "/teacher/update")
-    public int update(@RequestParam(name = "id") Integer id,
+    public int update(@RequestParam(name = "teacher_id") Integer id,
                       @RequestParam(name = "teacher_name", required = false) String newName,
                       @RequestParam(name = "teacher_age", required = false) Integer newAge,
                       @RequestParam(name = "teacher_gender", required = false) String newGender) {
@@ -56,7 +56,7 @@ public class TeacherController {
     }
 
     @DeleteMapping(value = "/teacher/delete")
-    public int delete(@RequestParam(name="id") Integer id) {
+    public int delete(@RequestParam(name="teacher_id") Integer id) {
         Teacher teacher = new Teacher();
         teacher.setId(id);
         return teacherService.delete(teacher);

@@ -32,6 +32,12 @@
         <if test="subjectName != null">subject_name = #{subjectName},</if>
         <if test="subjectDay != null">subject_day = #{subjectDay},</if>
         <if test="subjectPeriod != null">subject_period = #{subjectPeriod},</if>
+        modify_time = now()
+        WHERE
+        id = #{id}
+    </update>
+    <update id="updateTeacherId" parameterType="io.williamwu.springdb.entity.Subject">
+        UPDATE subject SET
         teacher_id = #{teacherId},
         modify_time = now()
         WHERE

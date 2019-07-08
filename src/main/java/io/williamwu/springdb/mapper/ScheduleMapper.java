@@ -15,4 +15,6 @@ public interface ScheduleMapper {
 
     int delete(Schedule schedule);
 
+    int updateTeacherId(Schedule schedule);
+
 }
