@@ -37,9 +37,7 @@ public class SubjectController {
 
     @GetMapping(value = "/subject/{id}")
     public List<Subject> get(@PathVariable Integer id) {
-        Subject subject = new Subject();
-        subject.setId(id);
-        return subjectService.get(subject);
+        return subjectService.get(new Subject(id, null, null, null));
     }
 
     @GetMapping(value = "/subject/getTeachers")
@@ -87,9 +85,7 @@ public class SubjectController {
 
     @DeleteMapping(value = "/subject/delete")
     public int delete(@RequestParam(name = "subject_id") Integer id) {
-        Subject subject = new Subject();
-        subject.setId(id);
-        return subjectService.delete(subject);
+        return subjectService.delete(new Subject(id, null, null, null));
     }
 
 }

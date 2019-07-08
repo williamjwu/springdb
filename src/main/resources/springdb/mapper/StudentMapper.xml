@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.williamwu.springdb.mapper.StudentMapper">
-    <resultMap id="ResultMap" type="io.williamwu.springdb.entity.Student" >
+    <resultMap id="ResultMap" type="Student" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="student_name" property="studentName" jdbcType="VARCHAR" />
         <result column="student_age" property="age" jdbcType="INTEGER" />
@@ -12,7 +12,7 @@
     <select id="getAll" resultMap="ResultMap">
         SELECT * FROM student;
     </select>
-    <select id="get" parameterType="io.williamwu.springdb.entity.Student" resultMap="ResultMap">
+    <select id="get" parameterType="Student" resultMap="ResultMap">
         SELECT * FROM student
         <where>
             <if test="id != null">id = #{id}</if>
@@ -21,11 +21,11 @@
             <if test="gender != null">AND student_gender = #{gender}</if>
         </where>;
     </select>
-    <insert id="insert" parameterType="io.williamwu.springdb.entity.Student">
+    <insert id="insert" parameterType="Student">
         INSERT INTO student (create_time, student_name, student_age, student_gender)
         VALUES (now(), #{studentName}, #{age}, #{gender});
     </insert>
-    <update id="update" parameterType="io.williamwu.springdb.entity.Student" >
+    <update id="update" parameterType="Student" >
         UPDATE student SET
         <if test="studentName != null">student_name = #{studentName},</if>
         <if test="age != null">student_age = #{age},</if>
@@ -34,7 +34,7 @@
         WHERE
         id = #{id}
     </update>
-    <delete id="delete" parameterType="io.williamwu.springdb.entity.Student">
+    <delete id="delete" parameterType="Student">
         DELETE from student
         <where>
             <if test="id != null">id = #{id}</if>

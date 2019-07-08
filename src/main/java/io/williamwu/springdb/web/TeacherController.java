@@ -32,9 +32,7 @@ public class TeacherController {
 
     @GetMapping(value = "/teacher/{id}")
     public List<Teacher> get(@PathVariable Integer id) {
-        Teacher teacher = new Teacher();
-        teacher.setId(id);
-        return teacherService.get(teacher);
+        return teacherService.get(new Teacher(id, null, null, null));
     }
 
     @GetMapping(value = "teacher/getSubjects")
@@ -57,8 +55,6 @@ public class TeacherController {
 
     @DeleteMapping(value = "/teacher/delete")
     public int delete(@RequestParam(name="teacher_id") Integer id) {
-        Teacher teacher = new Teacher();
-        teacher.setId(id);
-        return teacherService.delete(teacher);
+        return teacherService.delete(new Teacher(id, null, null, null));
     }
 }

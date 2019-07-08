@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.williamwu.springdb.mapper.TeacherMapper">
-    <resultMap id="ResultMap" type="io.williamwu.springdb.entity.Teacher" >
+    <resultMap id="ResultMap" type="Teacher" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
         <result column="teacher_age" property="age" jdbcType="INTEGER" />
@@ -12,7 +12,7 @@
     <select id="getAll" resultMap="ResultMap">
         SELECT * FROM teacher;
     </select>
-    <select id="get" parameterType="io.williamwu.springdb.entity.Teacher" resultMap="ResultMap">
+    <select id="get" parameterType="Teacher" resultMap="ResultMap">
         SELECT * FROM teacher
         <where>
             <if test="id != null">id = #{id}</if>
@@ -21,11 +21,11 @@
             <if test="gender != null">AND teacher_gender = #{gender}</if>
         </where>;
     </select>
-    <insert id="insert" parameterType="io.williamwu.springdb.entity.Teacher">
+    <insert id="insert" parameterType="Teacher">
         INSERT INTO teacher (create_time, teacher_name, teacher_age, teacher_gender)
         VALUES (now(), #{teacherName}, #{age}, #{gender});
     </insert>
-    <update id="update" parameterType="io.williamwu.springdb.entity.Teacher" >
+    <update id="update" parameterType="Teacher" >
         UPDATE teacher SET
         <if test="teacherName != null">teacher_name = #{teacherName},</if>
         <if test="age != null">teacher_age = #{age},</if>
@@ -34,7 +34,7 @@
         WHERE
         id = #{id}
     </update>
-    <delete id="delete" parameterType="io.williamwu.springdb.entity.Teacher">
+    <delete id="delete" parameterType="Teacher">
         DELETE from teacher
         <where>
             <if test="id != null">id = #{id}</if>

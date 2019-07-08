@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.williamwu.springdb.mapper.ScheduleMapper">
-    <resultMap id="ResultMap" type="io.williamwu.springdb.entity.Schedule" >
+    <resultMap id="ResultMap" type="Schedule" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="student_id" property="studentId" jdbcType="INTEGER" />
         <result column="subject_id" property="subjectId" jdbcType="INTEGER" />
@@ -12,7 +12,7 @@
     <select id="getAll" resultMap="ResultMap">
         SELECT * FROM schedule
     </select>
-    <select id="get" parameterType="io.williamwu.springdb.entity.Schedule" resultMap="ResultMap">
+    <select id="get" parameterType="Schedule" resultMap="ResultMap">
         SELECT * FROM schedule
         <where>
             <if test="id != null">id = #{id}</if>
@@ -21,11 +21,11 @@
             <if test="teacherId != null">AND teacher_id = #{teacherId}</if>
         </where>
     </select>
-    <insert id="insert" parameterType="io.williamwu.springdb.entity.Schedule">
+    <insert id="insert" parameterType="Schedule">
         INSERT INTO schedule (create_time, student_id, subject_id)
         VALUES (now(), #{studentId}, #{subjectId})
     </insert>
-    <update id="update" parameterType="io.williamwu.springdb.entity.Schedule">
+    <update id="update" parameterType="Schedule">
         UPDATE schedule SET
         <if test="studentId != null">student_id = #{studentId},</if>
         <if test="subjectId != null">subject_id = #{subjectId},</if>
@@ -33,14 +33,14 @@
         WHERE
         id = #{id}
     </update>
-    <update id="updateTeacherId" parameterType="io.williamwu.springdb.entity.Schedule">
+    <update id="updateTeacherId" parameterType="Schedule">
         UPDATE schedule SET
         teacher_id = #{teacherId},
         modify_time = now()
         WHERE
         subject_id = #{subjectId}
     </update>
-    <delete id="delete" parameterType="io.williamwu.springdb.entity.Schedule">
+    <delete id="delete" parameterType="Schedule">
         DELETE from schedule
         <where>
             <if test="id != null">id = #{id}</if>

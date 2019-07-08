@@ -31,9 +31,7 @@ public class StudentController {
 
     @GetMapping(value = "/student/{id}")
     public List<Student> get(@PathVariable Integer id) {
-        Student student = new Student();
-        student.setId(id);
-        return studentService.get(student);
+        return studentService.get(new Student(id, null, null, null));
     }
 
     @GetMapping(value = "/student/getSubjects")
@@ -51,9 +49,7 @@ public class StudentController {
 
     @DeleteMapping(value = "/student/delete")
     public int delete(@RequestParam(name="student_id") Integer id) {
-        Student student = new Student();
-        student.setId(id);
-        return studentService.delete(student);
+        return studentService.delete(new Student(id, null, null, null));
     }
 
 }

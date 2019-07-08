@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
+    <typeAliases>
+        <typeAlias type="io.williamwu.springdb.entity.Subject" alias="Subject"/>
+        <typeAlias type="io.williamwu.springdb.entity.Student" alias="Student"/>
+        <typeAlias type="io.williamwu.springdb.entity.Teacher" alias="Teacher"/>
+        <typeAlias type="io.williamwu.springdb.entity.Schedule" alias="Schedule"/>
+    </typeAliases>
 </configuration>
