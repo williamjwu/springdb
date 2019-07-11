@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.williamwu.springdb.serviceschool.mapper.SubjectMapper">
+    <resultMap id="ResultMap" type="Subject" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="subject_name" property="subjectName" jdbcType="VARCHAR" />
+        <result column="teacher_id" property="teacherId" jdbcType="INTEGER" />
+        <result column="subject_day" property="subjectDay" jdbcType="VARCHAR" />
+        <result column="subject_period" property="subjectPeriod" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <select id="getAll" resultMap="ResultMap">
+        SELECT * FROM subject;
+    </select>
+    <select id="get" parameterType="Subject" resultMap="ResultMap">
+        SELECT * FROM subject
+        <where>
+            <if test="id != null">id = #{id}</if>
+            <if test="subjectName != null">AND subject_name = #{subjectName}</if>
+            <if test="teacherId != null">AND teacher_id = #{teacherId}</if>
+            <if test="subjectDay != null">AND subject_day = #{subjectDay}</if>
+            <if test="subjectPeriod != null">AND subject_period = #{subjectPeriod},</if>
+        </where>;
+    </select>
+    <insert id="insert" parameterType="Subject">
+        INSERT INTO subject (create_time, subject_name, subject_day, subject_period)
+        VALUES (now(), #{subjectName}, #{subjectDay}, #{subjectPeriod});
+    </insert>
+    <update id="update" parameterType="Subject" >
+        UPDATE subject SET
+        <if test="subjectName != null">subject_name = #{subjectName},</if>
+        <if test="subjectDay != null">subject_day = #{subjectDay},</if>
+        <if test="subjectPeriod != null">subject_period = #{subjectPeriod},</if>
+        modify_time = now()
+        WHERE
+        id = #{id}
+    </update>
+    <update id="updateTeacherId" parameterType="Subject">
+        UPDATE subject SET
+        teacher_id = #{teacherId},
+        modify_time = now()
+        WHERE
+        id = #{id}
+    </update>
+    <delete id="delete" parameterType="Subject">
+        DELETE from subject
+        <where>
+            <if test="id != null">id = #{id}</if>
+            <if test="subjectName != null">AND subject_name = #{subjectName}</if>
+            <if test="teacherId != null">AND teacher_id = #{teacherId}</if>
+            <if test="subjectDay != null">AND subject_day = #{subjectDay}</if>
+            <if test="subjectPeriod != null">AND subject_period = #{subjectPeriod},</if>
+        </where>;
+    </delete>
+</mapper>
