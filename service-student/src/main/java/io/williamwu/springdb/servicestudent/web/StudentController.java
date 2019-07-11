@@ -23,12 +23,12 @@ public class StudentController {
         return studentService.insert(new Student(null, name, age, gender));
     }
 
-    @GetMapping(value = "/student")
+    @GetMapping(value = "/student/get")
     public List<Student> getAll() {
         return studentService.getAll();
     }
 
-    @GetMapping(value = "/student/{id}")
+    @GetMapping(value = "/student/get/{id}")
     public List<Student> get(@PathVariable Integer id) {
         return studentService.get(new Student(id, null, null, null));
     }
@@ -38,7 +38,7 @@ public class StudentController {
         return bridgeService.subjectGetStudents(name);
     }
 
-    @GetMapping(value = "teacher/getStudents")
+    @GetMapping(value = "/teacher/getStudents")
     public List<Student> teacherGetStudents(@RequestParam(name = "teacher_name") String name) {
         return bridgeService.teacherGetStudents(name);
     }

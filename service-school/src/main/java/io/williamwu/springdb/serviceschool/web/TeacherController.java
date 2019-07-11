@@ -24,17 +24,17 @@ public class TeacherController {
         return teacherService.insert(new Teacher(null, name, age, gender));
     }
 
-    @GetMapping(value = "/teacher")
+    @GetMapping(value = "/teacher/get")
     public List<Teacher> getAll() {
         return teacherService.getAll();
     }
 
-    @GetMapping(value = "/teacher/{id}")
+    @GetMapping(value = "/teacher/get/{id}")
     public List<Teacher> get(@PathVariable Integer id) {
         return teacherService.get(new Teacher(id, null, null, null));
     }
 
-    @GetMapping(value = "teacher/getSubjects")
+    @GetMapping(value = "/teacher/getSubjects")
     public List<Subject> getSubjects(@RequestParam(name = "teacher_name") String name) {
         return bridgeService.teacherGetSubjects(name);
     }

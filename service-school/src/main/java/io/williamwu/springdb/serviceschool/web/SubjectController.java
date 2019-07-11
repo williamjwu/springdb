@@ -29,12 +29,12 @@ public class SubjectController {
         return subjectService.insert(new Subject(null, name, day, period));
     }
 
-    @GetMapping(value = "/subject")
+    @GetMapping(value = "/subject/get")
     public List<Subject> getAll() {
         return subjectService.getAll();
     }
 
-    @GetMapping(value = "/subject/{id}")
+    @GetMapping(value = "/subject/get/{id}")
     public List<Subject> get(@PathVariable Integer id) {
         return subjectService.get(new Subject(id, null, null, null));
     }
