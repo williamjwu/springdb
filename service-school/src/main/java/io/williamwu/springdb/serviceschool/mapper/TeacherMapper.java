@@ -1,6 +1,6 @@
 package io.williamwu.springdb.serviceschool.mapper;
 
-import io.williamwu.springdb.serviceschool.entity.Teacher;
+import entity.Teacher;
 import java.util.List;
 
 public interface TeacherMapper {

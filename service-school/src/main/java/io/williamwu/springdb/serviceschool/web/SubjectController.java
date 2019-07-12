@@ -1,8 +1,9 @@
 package io.williamwu.springdb.serviceschool.web;
 
-import io.williamwu.springdb.serviceschool.entity.Schedule;
-import io.williamwu.springdb.serviceschool.entity.Subject;
-import io.williamwu.springdb.serviceschool.entity.Teacher;
+import entity.Schedule;
+import entity.Student;
+import entity.Subject;
+import entity.Teacher;
 import io.williamwu.springdb.serviceschool.service.BridgeService;
 import io.williamwu.springdb.serviceschool.service.ScheduleService;
 import io.williamwu.springdb.serviceschool.service.SubjectService;
@@ -44,9 +45,9 @@ public class SubjectController {
         return bridgeService.subjectGetTeachers(name);
     }
 
-    @GetMapping(value = "/student/getSubjects")
-    public List<Subject> getSubjects(@RequestParam(name = "student_name") String name) {
-        return bridgeService.studentGetSubjects(name);
+    @GetMapping(value = "/subject/getStudents")
+    public List<Student> subjectGetStudents(@RequestParam(name = "subject_name") String name) {
+        return bridgeService.subjectGetStudents(name);
     }
 
     @PostMapping(value = "/subject/addTeacher")

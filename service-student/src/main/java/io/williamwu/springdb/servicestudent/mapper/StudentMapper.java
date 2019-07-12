@@ -1,7 +1,6 @@
 package io.williamwu.springdb.servicestudent.mapper;
 
-import io.williamwu.springdb.servicestudent.entity.Student;
-
+import entity.Student;
 import java.util.List;
 
 public interface StudentMapper {

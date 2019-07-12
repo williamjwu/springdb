@@ -1,6 +1,7 @@
-package io.williamwu.springdb.servicestudent.entity;
+package entity;
 
-import io.williamwu.springdb.servicestudent.enums.GenderEnum;
+import enums.GenderEnum;
+
 import java.util.Date;
 
 public class Student {

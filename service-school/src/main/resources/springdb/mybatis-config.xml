@@ -2,8 +2,8 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="io.williamwu.springdb.serviceschool.entity.Subject" alias="Subject"/>
-        <typeAlias type="io.williamwu.springdb.serviceschool.entity.Teacher" alias="Teacher"/>
-        <typeAlias type="io.williamwu.springdb.serviceschool.entity.Schedule" alias="Schedule"/>
+        <typeAlias type="entity.Subject" alias="Subject"/>
+        <typeAlias type="entity.Teacher" alias="Teacher"/>
+        <typeAlias type="entity.Schedule" alias="Schedule"/>
     </typeAliases>
 </configuration>

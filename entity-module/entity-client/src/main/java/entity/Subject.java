@@ -1,7 +1,8 @@
-package io.williamwu.springdb.serviceschool.entity;
+package entity;
 
-import io.williamwu.springdb.serviceschool.enums.DayEnum;
-import io.williamwu.springdb.serviceschool.enums.PeriodEnum;
+import enums.DayEnum;
+import enums.PeriodEnum;
+
 import java.util.Date;
 
 public class Subject {

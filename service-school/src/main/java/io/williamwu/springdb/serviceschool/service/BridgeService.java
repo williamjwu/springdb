@@ -1,7 +1,8 @@
 package io.williamwu.springdb.serviceschool.service;
 
-import io.williamwu.springdb.serviceschool.entity.Subject;
-import io.williamwu.springdb.serviceschool.entity.Teacher;
+import entity.Student;
+import entity.Subject;
+import entity.Teacher;
 import io.williamwu.springdb.serviceschool.mapper.BridgeMapper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -17,11 +18,15 @@ public class BridgeService {
         return mapper.subjectGetTeachers(name);
     }
 
-    public List<Subject> studentGetSubjects(String name) {
-        return mapper.studentGetSubjects(name);
-    }
-
     public List<Subject> teacherGetSubjects(String name) {
         return mapper.teacherGetSubjects(name);
+    }
+
+    public List<Student> subjectGetStudents(String name) {
+        return mapper.subjectGetStudents(name);
+    }
+
+    public List<Student> teacherGetStudents(String name) {
+        return mapper.teacherGetStudents(name);
     }
 }

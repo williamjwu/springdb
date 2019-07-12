@@ -1,4 +1,4 @@
-package io.williamwu.springdb.servicestudent.enums;
+package enums;
 
 public enum GenderEnum {
     MALE, FEMALE, UNKNOWN

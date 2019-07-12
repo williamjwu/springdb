@@ -1,6 +1,7 @@
 package io.williamwu.springdb.servicestudent.web;
 
-import io.williamwu.springdb.servicestudent.entity.Student;
+import entity.Student;
+import entity.Subject;
 import io.williamwu.springdb.servicestudent.service.BridgeService;
 import io.williamwu.springdb.servicestudent.service.dbService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +34,9 @@ public class StudentController {
         return studentService.get(new Student(id, null, null, null));
     }
 
-    @GetMapping(value = "/subject/getStudents")
-    public List<Student> subjectGetStudents(@RequestParam(name = "subject_name") String name) {
-        return bridgeService.subjectGetStudents(name);
-    }
-
-    @GetMapping(value = "/teacher/getStudents")
-    public List<Student> teacherGetStudents(@RequestParam(name = "teacher_name") String name) {
-        return bridgeService.teacherGetStudents(name);
+    @GetMapping(value = "/getSubjects")
+    public List<Subject> getSubjects(@RequestParam(name = "student_name") String name) {
+        return bridgeService.studentGetSubjects(name);
     }
 
     @PostMapping(value = "/update")

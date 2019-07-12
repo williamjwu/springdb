@@ -1,4 +1,4 @@
-package io.williamwu.springdb.serviceschool.entity;
+package entity;
 
 import java.util.Date;
 

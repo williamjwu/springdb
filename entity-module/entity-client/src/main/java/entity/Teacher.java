@@ -1,7 +1,6 @@
-package io.williamwu.springdb.serviceschool.entity;
+package entity;
 
-import io.williamwu.springdb.serviceschool.enums.GenderEnum;
-
+import enums.GenderEnum;
 import java.util.Date;
 
 public class Teacher {

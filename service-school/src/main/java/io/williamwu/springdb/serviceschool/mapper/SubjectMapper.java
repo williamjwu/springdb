@@ -1,6 +1,6 @@
 package io.williamwu.springdb.serviceschool.mapper;
 
-import io.williamwu.springdb.serviceschool.entity.Subject;
+import entity.Subject;
 import java.util.List;
 
 public interface SubjectMapper {
