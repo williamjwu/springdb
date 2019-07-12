@@ -16,19 +16,19 @@ public class StudentController {
     @Autowired
     private BridgeService bridgeService;
 
-    @PostMapping(value = "/student/insert")
+    @PostMapping(value = "/insert")
     public int insert(@RequestParam(name = "student_name") String name,
                       @RequestParam(name = "student_age") Integer age,
                       @RequestParam(name = "student_gender") String gender) {
         return studentService.insert(new Student(null, name, age, gender));
     }
 
-    @GetMapping(value = "/student/get")
+    @GetMapping(value = "/")
     public List<Student> getAll() {
         return studentService.getAll();
     }
 
-    @GetMapping(value = "/student/get/{id}")
+    @GetMapping(value = "/{id}")
     public List<Student> get(@PathVariable Integer id) {
         return studentService.get(new Student(id, null, null, null));
     }
@@ -43,7 +43,7 @@ public class StudentController {
         return bridgeService.teacherGetStudents(name);
     }
 
-    @PostMapping(value = "/student/update")
+    @PostMapping(value = "/update")
     public int update(@RequestParam(name = "student_id") Integer id,
                       @RequestParam(name = "student_name", required = false) String newName,
                       @RequestParam(name = "student_age", required = false) Integer newAge,
@@ -51,7 +51,7 @@ public class StudentController {
         return studentService.update(new Student(id, newName, newAge, newGender));
     }
 
-    @DeleteMapping(value = "/student/delete")
+    @DeleteMapping(value = "/delete")
     public int delete(@RequestParam(name="student_id") Integer id) {
         return studentService.delete(new Student(id, null, null, null));
     }
