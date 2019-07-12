@@ -24,12 +24,12 @@ public class TeacherController {
         return teacherService.insert(new Teacher(null, name, age, gender));
     }
 
-    @GetMapping(value = "/teacher/get")
+    @GetMapping(value = "/teacher")
     public List<Teacher> getAll() {
         return teacherService.getAll();
     }
 
-    @GetMapping(value = "/teacher/get/{id}")
+    @GetMapping(value = "/teacher/{id}")
     public List<Teacher> get(@PathVariable Integer id) {
         return teacherService.get(new Teacher(id, null, null, null));
     }

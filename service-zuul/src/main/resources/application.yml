@@ -9,11 +9,8 @@ spring:
     name: service-zuul
 zuul:
   routes:
-    teacher:
-      path: /teacher/**
-      serviceId: service-school
-    subject:
-      path: /subject/**
+    school:
+      path: /school/**
       serviceId: service-school
     student:
       path: /student/**
