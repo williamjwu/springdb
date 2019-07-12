@@ -3,10 +3,16 @@ package entity;
 import enums.DayEnum;
 import enums.PeriodEnum;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Date;
 
+@Entity
 public class Subject {
 
+    @Id
+    @GeneratedValue
     private Integer id;
     private String subjectName;
     private DayEnum subjectDay;

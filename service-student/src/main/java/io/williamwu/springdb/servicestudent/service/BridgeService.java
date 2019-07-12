@@ -1,6 +1,5 @@
 package io.williamwu.springdb.servicestudent.service;
 
-import entity.Student;
 import entity.Subject;
 import io.williamwu.springdb.servicestudent.mapper.BridgeMapper;
 import org.springframework.stereotype.Service;

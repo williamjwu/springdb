@@ -1,6 +1,5 @@
 package io.williamwu.springdb.servicestudent.mapper;
 
-import entity.Student;
 import entity.Subject;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;

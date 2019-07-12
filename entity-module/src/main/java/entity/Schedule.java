@@ -1,9 +1,15 @@
 package entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Date;
 
+@Entity
 public class Schedule {
 
+    @Id
+    @GeneratedValue
     private Integer id;
     private Integer studentId;
     private Integer subjectId;

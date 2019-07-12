@@ -31,7 +31,7 @@
         </dependency>
         <dependency>
             <groupId>io.williamwu.springdb</groupId>
-            <artifactId>entity-client</artifactId>
+            <artifactId>entity-module</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>
