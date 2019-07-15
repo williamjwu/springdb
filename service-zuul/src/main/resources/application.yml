@@ -11,6 +11,7 @@ spring:
     user:
       name: william
       password: 123
+      roles: ADMIN, USER
 zuul:
   routes:
     school:
@@ -19,6 +20,3 @@ zuul:
     student:
       path: /student/**
       serviceId: service-student
-    login:
-      path: /login/**
-      serviceId: service-zuul
