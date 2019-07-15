@@ -15,3 +15,6 @@ zuul:
     student:
       path: /student/**
       serviceId: service-student
+    login:
+      path: /login/**
+      serviceId: service-zuul
