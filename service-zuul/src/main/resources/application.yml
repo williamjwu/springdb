@@ -7,6 +7,10 @@ server:
 spring:
   application:
     name: service-zuul
+  security:
+    user:
+      name: william
+      password: 123
 zuul:
   routes:
     school:

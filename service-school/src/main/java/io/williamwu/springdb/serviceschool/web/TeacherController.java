@@ -36,7 +36,7 @@ public class TeacherController {
     }
 
     @GetMapping(value = "/teacher/getSubjects")
-    public List<Subject> getSubjects(@RequestParam(name = "teacher_name") String name) {
+    public List<Subject> teacherGetSubjects(@RequestParam(name = "teacher_name") String name) {
         return bridgeService.teacherGetSubjects(name);
     }
 
