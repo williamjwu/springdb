@@ -11,7 +11,7 @@
         <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
     </resultMap>
     <select id="getAll" resultMap="ResultMap">
-        SELECT * FROM subject;
+        SELECT * FROM subject
     </select>
     <select id="get" parameterType="Subject" resultMap="ResultMap">
         SELECT * FROM subject
@@ -21,11 +21,11 @@
             <if test="teacherId != null">AND teacher_id = #{teacherId}</if>
             <if test="subjectDay != null">AND subject_day = #{subjectDay}</if>
             <if test="subjectPeriod != null">AND subject_period = #{subjectPeriod},</if>
-        </where>;
+        </where>
     </select>
     <insert id="insert" parameterType="Subject">
         INSERT INTO subject (create_time, subject_name, subject_day, subject_period)
-        VALUES (now(), #{subjectName}, #{subjectDay}, #{subjectPeriod});
+        VALUES (now(), #{subjectName}, #{subjectDay}, #{subjectPeriod})
     </insert>
     <update id="update" parameterType="Subject" >
         UPDATE subject SET
@@ -51,6 +51,6 @@
             <if test="teacherId != null">AND teacher_id = #{teacherId}</if>
             <if test="subjectDay != null">AND subject_day = #{subjectDay}</if>
             <if test="subjectPeriod != null">AND subject_period = #{subjectPeriod},</if>
-        </where>;
+        </where>
     </delete>
 </mapper>

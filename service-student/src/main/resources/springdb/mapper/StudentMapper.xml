@@ -10,7 +10,7 @@
         <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
     </resultMap>
     <select id="getAll" resultMap="ResultMap">
-        SELECT * FROM student;
+        SELECT * FROM student
     </select>
     <select id="get" parameterType="Student" resultMap="ResultMap">
         SELECT * FROM student
@@ -19,11 +19,11 @@
             <if test="studentName != null">AND student_name = #{studentName}</if>
             <if test="age != null">AND student_age = #{age}</if>
             <if test="gender != null">AND student_gender = #{gender}</if>
-        </where>;
+        </where>
     </select>
     <insert id="insert" parameterType="Student">
         INSERT INTO student (create_time, student_name, student_age, student_gender)
-        VALUES (now(), #{studentName}, #{age}, #{gender});
+        VALUES (now(), #{studentName}, #{age}, #{gender})
     </insert>
     <update id="update" parameterType="Student" >
         UPDATE student SET
@@ -41,6 +41,6 @@
             <if test="studentName != null">AND student_name = #{studentName}</if>
             <if test="age != null">AND student_age = #{age}</if>
             <if test="gender != null">AND student_gender = #{gender}</if>
-        </where>;
+        </where>
     </delete>
 </mapper>

@@ -9,7 +9,11 @@ import io.williamwu.springdb.serviceschool.service.ScheduleService;
 import io.williamwu.springdb.serviceschool.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class SubjectController {
@@ -42,13 +46,20 @@ public class SubjectController {
 
     @GetMapping(value = "/subject/getTeachers")
     public List<Teacher> subjectGetTeachers(@RequestParam(name = "subject_name") String name) {
+
         return bridgeService.subjectGetTeachers(name);
     }
 
     @GetMapping(value = "/subject/getStudents")
     public List<Student> subjectGetStudents(@RequestParam(name = "subject_name") String name) {
-        return bridgeService.subjectGetStudents(name);
+        return null;
+//        return bridgeService.subjectGetStudents(name);
     }
+
+//    @GetMapping(value = "/subject/getPopulation")
+//    public List<Object> subjectGetPopulation(@RequestParam(name = "subject_name") String name) {
+//        return null;
+//    }
 
     @PostMapping(value = "/subject/addTeacher")
     public int addTeacher(@RequestParam(name = "subject_id") Integer subjectId,

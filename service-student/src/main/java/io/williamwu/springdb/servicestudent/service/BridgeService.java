@@ -12,8 +12,6 @@ public class BridgeService {
     @Resource
     private BridgeMapper mapper;
 
-    public List<Subject> studentGetSubjects(String name) {
-        return mapper.studentGetSubjects(name);
-    }
+
 
 }

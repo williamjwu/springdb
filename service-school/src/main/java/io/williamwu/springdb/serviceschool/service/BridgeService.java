@@ -1,6 +1,5 @@
 package io.williamwu.springdb.serviceschool.service;
 
-import entity.Student;
 import entity.Subject;
 import entity.Teacher;
 import io.williamwu.springdb.serviceschool.mapper.BridgeMapper;
@@ -14,6 +13,7 @@ public class BridgeService {
     @Resource
     private BridgeMapper mapper;
 
+    // Internal access only
     public List<Teacher> subjectGetTeachers(String name) {
         return mapper.subjectGetTeachers(name);
     }
@@ -22,11 +22,16 @@ public class BridgeService {
         return mapper.teacherGetSubjects(name);
     }
 
-    public List<Student> subjectGetStudents(String name) {
+    // Needs to access student service to get complete info
+    public List<Integer> subjectGetStudents(String name) {
         return mapper.subjectGetStudents(name);
     }
 
-    public List<Student> teacherGetStudents(String name) {
+    public List<Integer> teacherGetStudents(String name) {
         return mapper.teacherGetStudents(name);
+    }
+
+    public List<Subject> studentGetSubjects(Integer id) {
+        return mapper.studentGetSubjects(id);
     }
 }

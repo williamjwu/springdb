@@ -42,7 +42,8 @@ public class TeacherController {
 
     @GetMapping(value = "/teacher/getStudents")
     public List<Student> teacherGetStudents(@RequestParam(name = "teacher_name") String name) {
-        return bridgeService.teacherGetStudents(name);
+        return null;
+//        return bridgeService.teacherGetStudents(name);
     }
 
     @PostMapping(value = "/teacher/update")
