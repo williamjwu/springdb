@@ -2,6 +2,11 @@ server:
   port: 9082
 
 spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/springdb
+    username: springdb
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: service-student
 
@@ -9,3 +14,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:9080/eureka/
+
+mybatis:
+  config-location: classpath:springdb/mybatis-config.xml
+  mapper-locations: classpath:springdb/mapper/*.xml
