@@ -9,8 +9,8 @@ spring:
     name: service-zuul
   security:
     user:
-      name: william
-      password: 123
+      name: admin
+      password: root
       roles: ADMIN, USER
 zuul:
   routes:
