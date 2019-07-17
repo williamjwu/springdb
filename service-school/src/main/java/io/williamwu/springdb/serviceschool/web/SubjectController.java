@@ -1,14 +1,14 @@
 package io.williamwu.springdb.serviceschool.web;
 
-import entity.Schedule;
-import entity.Student;
-import entity.Subject;
-import entity.Teacher;
+import entity.*;
 import io.williamwu.springdb.serviceschool.service.BridgeService;
 import io.williamwu.springdb.serviceschool.service.ScheduleService;
 import io.williamwu.springdb.serviceschool.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -44,22 +44,21 @@ public class SubjectController {
         return subjectService.get(new Subject(id, null, null, null));
     }
 
-    @GetMapping(value = "/subject/getTeachers")
-    public List<Teacher> subjectGetTeachers(@RequestParam(name = "subject_name") String name) {
-
-        return bridgeService.subjectGetTeachers(name);
+    @GetMapping(value = "/subject/getPopulation")
+    public StudentTeacher subjectGetPopulation(@RequestParam(name = "subject_name") String name) {
+        RestTemplate restTemplate = new RestTemplate();
+        List<Integer> studentIdCollection = bridgeService.subjectGetStudents(name);
+        List<Student> studentList = new LinkedList<>();
+        for (Integer i : studentIdCollection) {
+            final String url = "http://localhost:9082/" + i;
+            studentList.addAll(restTemplate.getForObject(url, List.class));
+        }
+        return new StudentTeacher(bridgeService.subjectGetTeachers(name), studentList);
     }
-
-    @GetMapping(value = "/subject/getStudents")
-    public List<Student> subjectGetStudents(@RequestParam(name = "subject_name") String name) {
-        return null;
-//        return bridgeService.subjectGetStudents(name);
+    @GetMapping(value = "/studentGetSubjects/{id}")
+    public List<Subject> studentGetSubjects(@PathVariable Integer id) {
+        return bridgeService.studentGetSubjects(id);
     }
-
-//    @GetMapping(value = "/subject/getPopulation")
-//    public List<Object> subjectGetPopulation(@RequestParam(name = "subject_name") String name) {
-//        return null;
-//    }
 
     @PostMapping(value = "/subject/addTeacher")
     public int addTeacher(@RequestParam(name = "subject_id") Integer subjectId,

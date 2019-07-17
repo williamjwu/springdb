@@ -7,6 +7,9 @@ import io.williamwu.springdb.serviceschool.service.BridgeService;
 import io.williamwu.springdb.serviceschool.service.dbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.LinkedList;
 import java.util.List;
 
 @RestController
@@ -42,8 +45,14 @@ public class TeacherController {
 
     @GetMapping(value = "/teacher/getStudents")
     public List<Student> teacherGetStudents(@RequestParam(name = "teacher_name") String name) {
-        return null;
-//        return bridgeService.teacherGetStudents(name);
+        RestTemplate restTemplate = new RestTemplate();
+        List<Integer> studentIdCollection = bridgeService.teacherGetStudents(name);
+        List<Student> studentList = new LinkedList<>();
+        for (Integer i : studentIdCollection) {
+            final String url = "http://localhost:9082/" + i;
+            studentList.addAll(restTemplate.getForObject(url, List.class));
+        }
+        return studentList;
     }
 
     @PostMapping(value = "/teacher/update")

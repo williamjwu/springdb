@@ -40,6 +40,10 @@ public class SubjectService implements dbService<Subject> {
     public int updateTeacherId(Subject subject) {
         Schedule schedule = new Schedule();
         schedule.setSubjectId(subject.getId());
+        if (!scheduleService.get(schedule).isEmpty() && subject.getTeacherId() == null) {
+            System.out.println("Cannot remove a teacher. Remove all student from the class before removing the course teacher");
+            return -1;
+        }
         schedule.setTeacherId(subject.getTeacherId());
         return mapper.updateTeacherId(subject) + scheduleService.updateTeacherId(schedule);
     }
