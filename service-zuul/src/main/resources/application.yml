@@ -12,6 +12,9 @@ spring:
       name: admin
       password: root
       roles: ADMIN, USER
+  cloud:
+    config:
+      uri: http://localhost:9085
 zuul:
   routes:
     school:

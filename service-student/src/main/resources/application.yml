@@ -9,6 +9,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: service-student
+  cloud:
+    config:
+      uri: http://localhost:9085
 
 eureka:
   client:
