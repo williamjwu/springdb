@@ -12,6 +12,8 @@ spring:
       name: admin
       password: root
       roles: ADMIN, USER
+  profiles:
+    active: native
 zuul:
   routes:
     school:

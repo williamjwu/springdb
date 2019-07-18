@@ -9,6 +9,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: service-student
+  profiles:
+    active: native
 
 eureka:
   client:
