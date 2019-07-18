@@ -20,3 +20,6 @@ eureka:
 mybatis:
   config-location: classpath:springdb/mybatis-config.xml
   mapper-locations: classpath:springdb/mapper/*.xml
+
+school:
+  stuGetSbj: http://service-school/studentGetSubjects/

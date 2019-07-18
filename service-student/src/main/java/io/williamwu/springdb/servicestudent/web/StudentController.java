@@ -4,6 +4,7 @@ import entity.Student;
 import entity.Subject;
 import io.williamwu.springdb.servicestudent.service.dbService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import java.util.LinkedList;
@@ -17,6 +18,9 @@ public class StudentController {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Value("${school.stuGetSbj}")
+    private String stuGetSbjURL;
 
     @PostMapping(value = "/insert")
     public int insert(@RequestParam(name = "student_name") String name,
@@ -40,8 +44,7 @@ public class StudentController {
         List<Student> studentCollection = studentService.get(new Student(null, name, null, null));
         List<Subject> subjectList = new LinkedList<>();
         for (Student i : studentCollection) {
-            final String url = "http://service-school/studentGetSubjects/" + i.getId();
-            subjectList.addAll(restTemplate.getForObject(url, List.class));
+            subjectList.addAll(restTemplate.getForObject(stuGetSbjURL + i.getId(), List.class));
         }
         return subjectList;
     }

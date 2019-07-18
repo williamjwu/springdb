@@ -5,6 +5,7 @@ import io.williamwu.springdb.serviceschool.service.BridgeService;
 import io.williamwu.springdb.serviceschool.service.ScheduleService;
 import io.williamwu.springdb.serviceschool.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import java.util.LinkedList;
@@ -24,6 +25,9 @@ public class SubjectController {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Value("${student.get}")
+    private String getStudentURL;
 
     @PostMapping(value = "/subject/insert")
     public int insert(@RequestParam(name = "subject_name") String name,
@@ -47,8 +51,7 @@ public class SubjectController {
         List<Integer> studentIdCollection = bridgeService.subjectGetStudents(name);
         List<Student> studentList = new LinkedList<>();
         for (Integer i : studentIdCollection) {
-            final String url = "http://service-student/" + i;
-            studentList.addAll(restTemplate.getForObject(url, List.class));
+            studentList.addAll(restTemplate.getForObject(getStudentURL + i, List.class));
         }
         return new StudentTeacher(bridgeService.subjectGetTeachers(name), studentList);
     }
