@@ -6,7 +6,6 @@ import io.williamwu.springdb.servicestudent.service.dbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,6 +14,9 @@ public class StudentController {
 
     @Autowired
     private dbService<Student> studentService;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @PostMapping(value = "/insert")
     public int insert(@RequestParam(name = "student_name") String name,
@@ -35,11 +37,10 @@ public class StudentController {
 
     @GetMapping(value = "/getSubjects")
     public List<Subject> studentGetSubjects(@RequestParam(name = "student_name") String name) {
-        RestTemplate restTemplate = new RestTemplate();
         List<Student> studentCollection = studentService.get(new Student(null, name, null, null));
         List<Subject> subjectList = new LinkedList<>();
         for (Student i : studentCollection) {
-            final String url = "http://localhost:9081/studentGetSubjects/" + i.getId();
+            final String url = "http://service-school/studentGetSubjects/" + i.getId();
             subjectList.addAll(restTemplate.getForObject(url, List.class));
         }
         return subjectList;
