@@ -5,6 +5,9 @@ import entity.Subject;
 import io.williamwu.springdb.servicestudent.service.dbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import java.util.LinkedList;
@@ -29,24 +32,34 @@ public class StudentController {
         return studentService.insert(new Student(null, name, age, gender));
     }
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "/", produces = "application/json")
     public List<Student> getAll() {
         return studentService.getAll();
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{id}", produces = "application/json")
     public List<Student> get(@PathVariable Integer id) {
         return studentService.get(new Student(id, null, null, null));
     }
 
-    @GetMapping(value = "/getSubjects")
+    @PostMapping(value = "/getBatch", produces = "application/json")
+    public List<Student> getBatch(@RequestBody List<Integer> list) {
+        return studentService.getBatch(list);
+    }
+
+    @GetMapping(value = "/getSubjects", produces = "application/json")
     public List<Subject> studentGetSubjects(@RequestParam(name = "student_name") String name) {
         List<Student> studentCollection = studentService.get(new Student(null, name, null, null));
-        List<Subject> subjectList = new LinkedList<>();
+        List<Integer> studentIdCollection = new LinkedList<>();
         for (Student i : studentCollection) {
-            subjectList.addAll(restTemplate.getForObject(stuGetSbjURL + i.getId(), List.class));
+            studentIdCollection.add(i.getId());
         }
-        return subjectList;
+        HttpEntity<List<Integer>> entity = new HttpEntity<>(studentIdCollection, new HttpHeaders());
+        ResponseEntity<List> response = restTemplate.postForEntity(stuGetSbjURL, entity, List.class);
+        if (response == null) {
+            return null;
+        }
+        return response.getBody();
     }
 
     @PostMapping(value = "/update")

@@ -49,9 +49,15 @@ public interface BridgeMapper {
             "WHERE tch.teacher_name = #{name}")
     List<Integer> teacherGetStudents(String name);
 
-    @Select("SELECT DISTINCT sbj.* FROM subject sbj " +
+    @Select("<script> " +
+            "SELECT DISTINCT sbj.* FROM subject sbj " +
             "JOIN schedule skd ON sbj.id = skd.subject_id " +
-            "WHERE skd.student_id = #{id}")
+            "WHERE skd.student_id " +
+            "IN " +
+            "<foreach item=\"item\" index=\"index\" collection=\"list\" open=\"(\" separator=\",\" close=\")\"> " +
+            "#{item} " +
+            "</foreach> " +
+            "</script>")
     @Results(value = {
             @Result(property = "id", column = "id", jdbcType = INTEGER),
             @Result(property = "subjectName", column = "subject_name", jdbcType = VARCHAR),
@@ -61,6 +67,6 @@ public interface BridgeMapper {
             @Result(property = "modifyTime", column = "modify_time", jdbcType = TIMESTAMP),
             @Result(property = "teacherId", column = "teacher_id", jdbcType = INTEGER)
     })
-    List<Subject> studentGetSubjects(Integer id);
+    List<Subject> studentGetSubjects(List<Integer> list);
 
 }

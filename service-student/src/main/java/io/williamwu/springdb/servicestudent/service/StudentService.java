@@ -20,6 +20,10 @@ public class StudentService implements dbService<Student> {
         return mapper.get(student);
     }
 
+    public List<Student> getBatch(List<Integer> studentIdList) {
+        return mapper.getBatch(studentIdList);
+    }
+
     public int insert(Student student) {
         return mapper.insert(student);
     }

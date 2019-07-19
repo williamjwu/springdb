@@ -22,4 +22,4 @@ mybatis:
   mapper-locations: classpath:springdb/mapper/*.xml
 
 student:
-  get: http://service-student/
+  get: http://service-student/getBatch

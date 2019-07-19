@@ -8,6 +8,8 @@ public interface dbService<E> {
 
     List<E> get(E obj);
 
+    List<E> getBatch(List<Integer> obj);
+
     int insert(E obj);
 
     int update(E obj);

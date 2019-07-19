@@ -21,6 +21,14 @@
             <if test="gender != null">AND student_gender = #{gender}</if>
         </where>
     </select>
+    <select id="getBatch" parameterType="List" resultMap="ResultMap">
+        SELECT * FROM student
+        WHERE id
+        IN
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
     <insert id="insert" parameterType="Student">
         INSERT INTO student (create_time, student_name, student_age, student_gender)
         VALUES (now(), #{studentName}, #{age}, #{gender})

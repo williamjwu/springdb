@@ -31,7 +31,7 @@ public class BridgeService {
         return mapper.teacherGetStudents(name);
     }
 
-    public List<Subject> studentGetSubjects(Integer id) {
-        return mapper.studentGetSubjects(id);
+    public List<Subject> studentGetSubjects(List<Integer> list) {
+        return mapper.studentGetSubjects(list);
     }
 }

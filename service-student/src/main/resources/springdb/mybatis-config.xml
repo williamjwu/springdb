@@ -3,5 +3,6 @@
 <configuration>
     <typeAliases>
         <typeAlias type="entity.Student" alias="Student"/>
+        <typeAlias type="java.util.List" alias="List"/>
     </typeAliases>
 </configuration>

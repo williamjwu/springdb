@@ -9,6 +9,8 @@ public interface StudentMapper {
 
     List<Student> get(Student student);
 
+    List<Student> getBatch(List<Integer> studentIdList);
+
     int insert(Student student);
 
     int update(Student student);

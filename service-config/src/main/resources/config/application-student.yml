@@ -22,4 +22,4 @@ mybatis:
   mapper-locations: classpath:springdb/mapper/*.xml
 
 school:
-  stuGetSbj: http://service-school/studentGetSubjects/
+  stuGetSbj: http://service-school/studentGetSubjects

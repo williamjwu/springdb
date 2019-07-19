@@ -6,6 +6,9 @@ import io.williamwu.springdb.serviceschool.service.ScheduleService;
 import io.williamwu.springdb.serviceschool.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import java.util.LinkedList;
@@ -36,28 +39,29 @@ public class SubjectController {
         return subjectService.insert(new Subject(null, name, day, period));
     }
 
-    @GetMapping(value = "/subject")
+    @GetMapping(value = "/subject", produces = "application/json")
     public List<Subject> getAll() {
         return subjectService.getAll();
     }
 
-    @GetMapping(value = "/subject/{id}")
+    @GetMapping(value = "/subject/{id}", produces = "application/json")
     public List<Subject> get(@PathVariable Integer id) {
         return subjectService.get(new Subject(id, null, null, null));
     }
 
-    @GetMapping(value = "/subject/getPopulation")
+    @GetMapping(value = "/subject/getPopulation", produces = "application/json")
     public StudentTeacher subjectGetPopulation(@RequestParam(name = "subject_name") String name) {
         List<Integer> studentIdCollection = bridgeService.subjectGetStudents(name);
-        List<Student> studentList = new LinkedList<>();
-        for (Integer i : studentIdCollection) {
-            studentList.addAll(restTemplate.getForObject(getStudentURL + i, List.class));
+        HttpEntity<List<Integer>> entity = new HttpEntity<>(studentIdCollection, new HttpHeaders());
+        ResponseEntity<List> response = restTemplate.postForEntity(getStudentURL, entity, List.class);
+        if (response == null) {
+            return null;
         }
-        return new StudentTeacher(bridgeService.subjectGetTeachers(name), studentList);
+        return new StudentTeacher(bridgeService.subjectGetTeachers(name), response.getBody());
     }
-    @GetMapping(value = "/studentGetSubjects/{id}")
-    public List<Subject> studentGetSubjects(@PathVariable Integer id) {
-        return bridgeService.studentGetSubjects(id);
+    @PostMapping(value = "/studentGetSubjects", produces = "application/json")
+    public List<Subject> studentGetSubjects(@RequestBody List<Integer> IdList) {
+        return bridgeService.studentGetSubjects(IdList);
     }
 
     @PostMapping(value = "/subject/addTeacher")
