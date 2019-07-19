@@ -39,17 +39,17 @@ public interface BridgeMapper {
     })
     List<Subject> teacherGetSubjects(String name);
 
-    @Select("SELECT skd.student_id FROM subject sbj " +
+    @Select("SELECT DISTINCT skd.student_id FROM subject sbj " +
             "JOIN schedule skd ON sbj.id = skd.subject_id " +
             "WHERE sbj.subject_name = #{name}")
     List<Integer> subjectGetStudents(String name);
 
-    @Select("SELECT skd.student_id FROM schedule skd " +
+    @Select("SELECT DISTINCT skd.student_id FROM schedule skd " +
             "JOIN teacher tch ON skd.teacher_id = tch.id " +
             "WHERE tch.teacher_name = #{name}")
     List<Integer> teacherGetStudents(String name);
 
-    @Select("SELECT sbj.* FROM subject sbj " +
+    @Select("SELECT DISTINCT sbj.* FROM subject sbj " +
             "JOIN schedule skd ON sbj.id = skd.subject_id " +
             "WHERE skd.student_id = #{id}")
     @Results(value = {
