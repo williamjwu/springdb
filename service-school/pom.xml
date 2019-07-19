@@ -12,7 +12,8 @@
     <artifactId>service-school</artifactId>
     <version>1.0</version>
     <name>service-school</name>
-    <description>Demo project for Spring Boot</description>
+    <packaging>jar</packaging>
+    <description>School service</description>
 
     <properties>
         <java.version>1.8</java.version>

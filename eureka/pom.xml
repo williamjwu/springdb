@@ -12,7 +12,8 @@
     <artifactId>eureka</artifactId>
     <version>1.0</version>
     <name>eureka</name>
-    <description>Demo project for Spring Boot</description>
+    <packaging>jar</packaging>
+    <description>Eureka server</description>
 
     <properties>
         <java.version>1.8</java.version>

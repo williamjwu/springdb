@@ -12,7 +12,8 @@
     <artifactId>service-config</artifactId>
     <version>1.0</version>
     <name>service-config</name>
-    <description>Demo project for Spring Boot</description>
+    <packaging>jar</packaging>
+    <description>Configuration server</description>
 
     <properties>
         <java.version>1.8</java.version>
