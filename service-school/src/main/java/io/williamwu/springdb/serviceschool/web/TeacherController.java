@@ -3,7 +3,6 @@ package io.williamwu.springdb.serviceschool.web;
 import entity.Student;
 import entity.Subject;
 import entity.Teacher;
-
 import io.williamwu.springdb.serviceschool.service.BridgeService;
 import io.williamwu.springdb.serviceschool.service.dbService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import java.util.LinkedList;
+
 import java.util.List;
 
 @RestController
@@ -73,7 +72,7 @@ public class TeacherController {
     }
 
     @DeleteMapping(value = "/teacher/delete")
-    public int delete(@RequestParam(name="teacher_id") Integer id) {
+    public int delete(@RequestParam(name = "teacher_id") Integer id) {
         return teacherService.delete(new Teacher(id, null, null, null));
     }
 }

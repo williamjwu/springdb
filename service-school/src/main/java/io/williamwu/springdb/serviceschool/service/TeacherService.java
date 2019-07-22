@@ -1,8 +1,9 @@
 package io.williamwu.springdb.serviceschool.service;
 
-import io.williamwu.springdb.serviceschool.mapper.TeacherMapper;
 import entity.Teacher;
+import io.williamwu.springdb.serviceschool.mapper.TeacherMapper;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
 import java.util.List;
 

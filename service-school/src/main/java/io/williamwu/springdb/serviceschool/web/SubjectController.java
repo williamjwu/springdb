@@ -1,6 +1,8 @@
 package io.williamwu.springdb.serviceschool.web;
 
-import entity.*;
+import entity.Schedule;
+import entity.StudentTeacher;
+import entity.Subject;
 import io.williamwu.springdb.serviceschool.service.BridgeService;
 import io.williamwu.springdb.serviceschool.service.ScheduleService;
 import io.williamwu.springdb.serviceschool.service.SubjectService;
@@ -11,7 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import java.util.LinkedList;
+
 import java.util.List;
 
 @RestController
@@ -59,6 +61,7 @@ public class SubjectController {
         }
         return new StudentTeacher(bridgeService.subjectGetTeachers(name), response.getBody());
     }
+
     @PostMapping(value = "/studentGetSubjects", produces = "application/json")
     public List<Subject> studentGetSubjects(@RequestBody List<Integer> IdList) {
         return bridgeService.studentGetSubjects(IdList);

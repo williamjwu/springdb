@@ -1,6 +1,7 @@
 package io.williamwu.springdb.serviceschool.mapper;
 
 import entity.Schedule;
+
 import java.util.List;
 
 public interface ScheduleMapper {

@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -71,7 +72,7 @@ public class StudentController {
     }
 
     @DeleteMapping(value = "/delete")
-    public int delete(@RequestParam(name="student_id") Integer id) {
+    public int delete(@RequestParam(name = "student_id") Integer id) {
         return studentService.delete(new Student(id, null, null, null));
     }
 

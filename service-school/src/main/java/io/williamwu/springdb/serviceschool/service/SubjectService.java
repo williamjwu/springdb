@@ -1,8 +1,8 @@
 package io.williamwu.springdb.serviceschool.service;
 
 import entity.Schedule;
-import io.williamwu.springdb.serviceschool.mapper.SubjectMapper;
 import entity.Subject;
+import io.williamwu.springdb.serviceschool.mapper.SubjectMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
