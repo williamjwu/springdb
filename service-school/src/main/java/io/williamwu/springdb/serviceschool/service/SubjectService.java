@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class SubjectService implements dbService<Subject> {
+public class SubjectService implements DBService<Subject> {
 
     @Resource
     private SubjectMapper mapper;

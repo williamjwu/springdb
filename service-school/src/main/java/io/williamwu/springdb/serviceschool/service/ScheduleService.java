@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class ScheduleService implements dbService<Schedule> {
+public class ScheduleService implements DBService<Schedule> {
 
     @Resource
     private ScheduleMapper mapper;

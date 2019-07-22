@@ -2,7 +2,7 @@ package io.williamwu.springdb.servicestudent.web;
 
 import entity.Student;
 import entity.Subject;
-import io.williamwu.springdb.servicestudent.service.dbService;
+import io.williamwu.springdb.servicestudent.service.DBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -18,7 +18,7 @@ import java.util.List;
 public class StudentController {
 
     @Autowired
-    private dbService<Student> studentService;
+    private DBService<Student> studentService;
 
     @Autowired
     private RestTemplate restTemplate;

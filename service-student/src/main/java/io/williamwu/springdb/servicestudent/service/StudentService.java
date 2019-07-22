@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class StudentService implements dbService<Student> {
+public class StudentService implements DBService<Student> {
 
     @Resource
     private StudentMapper mapper;

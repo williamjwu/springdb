@@ -1,14 +1,12 @@
-package io.williamwu.springdb.servicestudent.service;
+package io.williamwu.springdb.serviceschool.service;
 
 import java.util.List;
 
-public interface dbService<E> {
+public interface DBService<E> {
 
     List<E> getAll();
 
     List<E> get(E obj);
-
-    List<E> getBatch(List<Integer> obj);
 
     int insert(E obj);
 

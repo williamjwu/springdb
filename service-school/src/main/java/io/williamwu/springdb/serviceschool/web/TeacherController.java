@@ -4,7 +4,7 @@ import entity.Student;
 import entity.Subject;
 import entity.Teacher;
 import io.williamwu.springdb.serviceschool.service.BridgeService;
-import io.williamwu.springdb.serviceschool.service.dbService;
+import io.williamwu.springdb.serviceschool.service.DBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -19,7 +19,7 @@ import java.util.List;
 public class TeacherController {
 
     @Autowired
-    private dbService<Teacher> teacherService;
+    private DBService<Teacher> teacherService;
 
     @Autowired
     private BridgeService bridgeService;
