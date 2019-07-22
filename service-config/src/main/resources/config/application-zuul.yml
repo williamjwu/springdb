@@ -22,3 +22,6 @@ zuul:
     student:
       path: /student/**
       serviceId: service-student
+  ribbon:
+    eager-load:
+      enabled: true
