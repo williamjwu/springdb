@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableEurekaClient
-@MapperScan(basePackages = "io.williamwu.springdb.serviceschool.mapper")
+@MapperScan(basePackages = "io.williamwu.springdb.serviceschool.dao")
 public class ServiceSchoolApplication {
 
     public static void main(String[] args) {

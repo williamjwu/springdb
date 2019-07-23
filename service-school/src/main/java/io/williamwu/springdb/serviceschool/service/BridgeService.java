@@ -2,7 +2,7 @@ package io.williamwu.springdb.serviceschool.service;
 
 import entity.Subject;
 import entity.Teacher;
-import io.williamwu.springdb.serviceschool.mapper.BridgeMapper;
+import io.williamwu.springdb.serviceschool.dao.BridgeMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

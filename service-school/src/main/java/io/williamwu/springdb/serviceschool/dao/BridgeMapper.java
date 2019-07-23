@@ -1,4 +1,4 @@
-package io.williamwu.springdb.serviceschool.mapper;
+package io.williamwu.springdb.serviceschool.dao;
 
 import entity.Subject;
 import entity.Teacher;

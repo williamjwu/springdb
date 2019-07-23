@@ -2,7 +2,7 @@ package io.williamwu.springdb.serviceschool.service;
 
 import entity.Schedule;
 import entity.Subject;
-import io.williamwu.springdb.serviceschool.mapper.ScheduleMapper;
+import io.williamwu.springdb.serviceschool.dao.ScheduleMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

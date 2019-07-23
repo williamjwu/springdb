@@ -1,7 +1,7 @@
 package io.williamwu.springdb.servicestudent.service;
 
 import entity.Student;
-import io.williamwu.springdb.servicestudent.mapper.StudentMapper;
+import io.williamwu.springdb.servicestudent.dao.StudentMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
