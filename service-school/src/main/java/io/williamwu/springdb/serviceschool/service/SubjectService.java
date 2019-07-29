@@ -1,51 +1,21 @@
 package io.williamwu.springdb.serviceschool.service;
 
-import entity.Schedule;
 import entity.Subject;
-import io.williamwu.springdb.serviceschool.dao.SubjectMapper;
-import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
-@Service
-public class SubjectService implements DBService<Subject> {
+public interface SubjectService {
 
-    @Resource
-    private SubjectMapper mapper;
+    List<Subject> getAll();
 
-    @Resource
-    private ScheduleService scheduleService;
+    List<Subject> get(Subject obj);
 
-    public List<Subject> getAll() {
-        return mapper.getAll();
-    }
+    int insert(Subject obj);
 
-    public List<Subject> get(Subject subject) {
-        return mapper.get(subject);
-    }
+    int update(Subject obj);
 
-    public int insert(Subject subject) {
-        return mapper.insert(subject);
-    }
+    int delete(Subject obj);
 
-    public int update(Subject subject) {
-        return mapper.update(subject);
-    }
-
-    public int delete(Subject subject) {
-        return mapper.delete(subject);
-    }
-
-    public int updateTeacherId(Subject subject) {
-        Schedule schedule = new Schedule();
-        schedule.setSubjectId(subject.getId());
-        if (!scheduleService.get(schedule).isEmpty() && subject.getTeacherId() == null) {
-            System.out.println("Cannot remove a teacher. Remove all student from the class before removing the course teacher");
-            return -1;
-        }
-        schedule.setTeacherId(subject.getTeacherId());
-        return mapper.updateTeacherId(subject) + scheduleService.updateTeacherId(schedule);
-    }
+    int updateTeacherId(Subject subject);
 
 }

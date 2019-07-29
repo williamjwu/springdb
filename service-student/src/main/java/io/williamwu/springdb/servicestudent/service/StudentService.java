@@ -1,40 +1,21 @@
 package io.williamwu.springdb.servicestudent.service;
 
 import entity.Student;
-import io.williamwu.springdb.servicestudent.dao.StudentMapper;
-import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
-@Service
-public class StudentService implements DBService<Student> {
+public interface StudentService {
 
-    @Resource
-    private StudentMapper mapper;
+    List<Student> getAll();
 
-    public List<Student> getAll() {
-        return mapper.getAll();
-    }
+    List<Student> get(Student obj);
 
-    public List<Student> get(Student student) {
-        return mapper.get(student);
-    }
+    List<Student> getBatch(List<Integer> obj);
 
-    public List<Student> getBatch(List<Integer> studentIdList) {
-        return mapper.getBatch(studentIdList);
-    }
+    int insert(Student obj);
 
-    public int insert(Student student) {
-        return mapper.insert(student);
-    }
+    int update(Student obj);
 
-    public int update(Student student) {
-        return mapper.update(student);
-    }
-
-    public int delete(Student student) {
-        return mapper.delete(student);
-    }
+    int delete(Student obj);
 
 }

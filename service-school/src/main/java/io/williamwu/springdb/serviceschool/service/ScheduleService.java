@@ -1,57 +1,21 @@
 package io.williamwu.springdb.serviceschool.service;
 
 import entity.Schedule;
-import entity.Subject;
-import io.williamwu.springdb.serviceschool.dao.ScheduleMapper;
-import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
-@Service
-public class ScheduleService implements DBService<Schedule> {
+public interface ScheduleService {
 
-    @Resource
-    private ScheduleMapper mapper;
+    List<Schedule> getAll();
 
-    @Resource
-    private SubjectService subjectService;
+    List<Schedule> get(Schedule obj);
 
-    public List<Schedule> getAll() {
-        return mapper.getAll();
-    }
+    int insert(Schedule obj);
 
-    public List<Schedule> get(Schedule schedule) {
-        return mapper.get(schedule);
-    }
+    int update(Schedule obj);
 
-    public int insert(Schedule schedule) {
-        try {
-            Subject subject = subjectService
-                    .get(new Subject(schedule.getSubjectId(), null, null, null))
-                    .get(0);
-            if (subject.getTeacherId() == null) {
-                System.out.println("Link a teacher before adding a student to class!");
-                return -1;
-            }
-            schedule.setTeacherId(subject.getTeacherId());
-            return mapper.insert(schedule) + mapper.updateTeacherId(schedule);
-        } catch (Exception ex) {
-            System.out.println("Subject is not found!");
-            return -1;
-        }
-    }
+    int delete(Schedule obj);
 
-    public int update(Schedule schedule) {
-        return mapper.update(schedule);
-    }
-
-    public int delete(Schedule schedule) {
-        return mapper.delete(schedule);
-    }
-
-    public int updateTeacherId(Schedule schedule) {
-        return mapper.updateTeacherId(schedule);
-    }
+    int updateTeacherId(Schedule subject);
 
 }

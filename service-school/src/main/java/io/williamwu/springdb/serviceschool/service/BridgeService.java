@@ -2,37 +2,18 @@ package io.williamwu.springdb.serviceschool.service;
 
 import entity.Subject;
 import entity.Teacher;
-import io.williamwu.springdb.serviceschool.dao.BridgeMapper;
-import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
-@Service
-public class BridgeService {
+public interface BridgeService {
 
-    @Resource
-    private BridgeMapper mapper;
+    List<Teacher> subjectGetTeachers(String name);
 
-    // Internal access only
-    public List<Teacher> subjectGetTeachers(String name) {
-        return mapper.subjectGetTeachers(name);
-    }
+    List<Subject> teacherGetSubjects(String name);
 
-    public List<Subject> teacherGetSubjects(String name) {
-        return mapper.teacherGetSubjects(name);
-    }
+    List<Integer> subjectGetStudents(String name);
 
-    // Needs to access student service to get complete info
-    public List<Integer> subjectGetStudents(String name) {
-        return mapper.subjectGetStudents(name);
-    }
+    List<Integer> teacherGetStudents(String name);
 
-    public List<Integer> teacherGetStudents(String name) {
-        return mapper.teacherGetStudents(name);
-    }
-
-    public List<Subject> studentGetSubjects(List<Integer> list) {
-        return mapper.studentGetSubjects(list);
-    }
+    List<Subject> studentGetSubjects(List<Integer> list);
 }

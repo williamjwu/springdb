@@ -1,36 +1,19 @@
 package io.williamwu.springdb.serviceschool.service;
 
 import entity.Teacher;
-import io.williamwu.springdb.serviceschool.dao.TeacherMapper;
-import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
-@Service
-public class TeacherService implements DBService<Teacher> {
+public interface TeacherService {
 
-    @Resource
-    private TeacherMapper mapper;
+    List<Teacher> getAll();
 
-    public List<Teacher> getAll() {
-        return mapper.getAll();
-    }
+    List<Teacher> get(Teacher obj);
 
-    public List<Teacher> get(Teacher teacher) {
-        return mapper.get(teacher);
-    }
+    int insert(Teacher obj);
 
-    public int insert(Teacher teacher) {
-        return mapper.insert(teacher);
-    }
+    int update(Teacher obj);
 
-    public int update(Teacher teacher) {
-        return mapper.update(teacher);
-    }
-
-    public int delete(Teacher teacher) {
-        return mapper.delete(teacher);
-    }
+    int delete(Teacher obj);
 
 }
