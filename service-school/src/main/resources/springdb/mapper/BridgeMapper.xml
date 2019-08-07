@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.williamwu.springdb.serviceschool.dao.BridgeMapper">
+    <resultMap id="TeacherResultMap" type="Teacher" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
+        <result column="teacher_age" property="age" jdbcType="INTEGER" />
+        <result column="teacher_gender" property="gender" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <resultMap id="SubjectResultMap" type="Subject" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="subject_name" property="subjectName" jdbcType="VARCHAR" />
+        <result column="teacher_id" property="teacherId" jdbcType="INTEGER" />
+        <result column="subject_day" property="subjectDay" jdbcType="VARCHAR" />
+        <result column="subject_period" property="subjectPeriod" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <select id="subjectGetTeachers" parameterType="String" resultMap="TeacherResultMap">
+        SELECT tch.* FROM subject sbj
+                              JOIN teacher tch ON sbj.teacher_id = tch.id
+        WHERE sbj.subject_name = #{name}
+    </select>
+    <select id="teacherGetSubjects" parameterType="String" resultMap="SubjectResultMap">
+        SELECT sbj.* FROM subject sbj
+                              JOIN teacher tch ON sbj.teacher_id = tch.id
+        WHERE tch.teacher_name = #{name}
+    </select>
+    <select id="subjectGetStudents" parameterType="String" resultType="Integer">
+        SELECT DISTINCT skd.student_id FROM subject sbj
+                                                JOIN schedule skd ON sbj.id = skd.subject_id
+        WHERE sbj.subject_name = #{name}
+    </select>
+    <select id="teacherGetStudents" parameterType="String" resultType="Integer">
+        SELECT DISTINCT skd.student_id FROM schedule skd
+                                                JOIN teacher tch ON skd.teacher_id = tch.id
+        WHERE tch.teacher_name = #{name}
+    </select>
+    <select id="studentGetSubjects" parameterType="List" resultMap="SubjectResultMap">
+        SELECT DISTINCT sbj.* FROM subject sbj
+        JOIN schedule skd ON sbj.id = skd.subject_id
+        WHERE skd.student_id
+        IN
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

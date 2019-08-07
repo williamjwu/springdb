@@ -5,5 +5,7 @@
         <typeAlias type="entity.Subject" alias="Subject"/>
         <typeAlias type="entity.Teacher" alias="Teacher"/>
         <typeAlias type="entity.Schedule" alias="Schedule"/>
+        <typeAlias type="java.lang.String" alias="String"/>
+        <typeAlias type="java.util.List" alias="List"/>
     </typeAliases>
 </configuration>
