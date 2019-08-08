@@ -20,22 +20,22 @@
     </resultMap>
     <select id="subjectGetTeachers" parameterType="String" resultMap="TeacherResultMap">
         SELECT tch.* FROM subject sbj
-                              JOIN teacher tch ON sbj.teacher_id = tch.id
+        JOIN teacher tch ON sbj.teacher_id = tch.id
         WHERE sbj.subject_name = #{name}
     </select>
     <select id="teacherGetSubjects" parameterType="String" resultMap="SubjectResultMap">
         SELECT sbj.* FROM subject sbj
-                              JOIN teacher tch ON sbj.teacher_id = tch.id
+        JOIN teacher tch ON sbj.teacher_id = tch.id
         WHERE tch.teacher_name = #{name}
     </select>
     <select id="subjectGetStudents" parameterType="String" resultType="Integer">
         SELECT DISTINCT skd.student_id FROM subject sbj
-                                                JOIN schedule skd ON sbj.id = skd.subject_id
+        JOIN schedule skd ON sbj.id = skd.subject_id
         WHERE sbj.subject_name = #{name}
     </select>
     <select id="teacherGetStudents" parameterType="String" resultType="Integer">
         SELECT DISTINCT skd.student_id FROM schedule skd
-                                                JOIN teacher tch ON skd.teacher_id = tch.id
+        JOIN teacher tch ON skd.teacher_id = tch.id
         WHERE tch.teacher_name = #{name}
     </select>
     <select id="studentGetSubjects" parameterType="List" resultMap="SubjectResultMap">
