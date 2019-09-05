@@ -1,19 +1,16 @@
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:9080/eureka/
 server:
   port: 9090
 spring:
   application:
-    name: service-zuul
-  security:
-    user:
-      name: admin
-      password: root
-      roles: ADMIN, USER
+    name: service-gateway
   profiles:
     active: native
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9080/eureka/
+
 zuul:
   routes:
     school:

@@ -1,0 +1,17 @@
+server:
+  port: 9089
+spring:
+  application:
+    name: service-auth
+  security:
+    user:
+      name: admin
+      password: root
+      roles: ADMIN, USER
+  profiles:
+    active: native
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9080/eureka/
