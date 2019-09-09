@@ -13,6 +13,9 @@ eureka:
 
 zuul:
   routes:
+    gateway:
+      path: /login/**
+      serviceId: service-gateway
     school:
       path: /school/**
       serviceId: service-school
